@@ -1,17 +1,31 @@
-const { createPokemon } = require("../controllers/pokemonsController.js");
+const {
+  createPokemon,
+  getPokemonsApi,
+  getPokemonsById,
+} = require("../controllers/pokemonsController.js");
 
-const getPokemonsHandler = (req, res) => {
+const getPokemonsHandler = async (req, res) => {
+  let { name } = req.query;
   try {
-    let { name } = req.query;
-    res.status(200).send(`ok, estamos en getPokemon: ${name}`);
+    if (name) {
+      const response = await getPokemonsApi(name);
+      res.status(200).json(response);
+    }
+    const response = await getPokemonsApi();
+    res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-const getPokemonsIdHandler = (req, res) => {
-  const { id } = req.params;
-  res.status(200).send(`Pokemon con id: ${id}`);
+const getPokemonsIdHandler = async(req, res) => {
+  const {idPokemon}=req.params;
+  try {
+    const response = await getPokemonsById(idPokemon)
+    res.status(200).json(response);    
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
 const createPokemonsHandler = async (req, res) => {
@@ -31,7 +45,7 @@ const createPokemonsHandler = async (req, res) => {
       types
     );
     //console.log('esto es lo que estoy creando ',pokemon);
-      res.status(200).send({pokemon});
+    res.status(200).send({ pokemon });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
