@@ -1,6 +1,9 @@
-const getTypesHandler = (req, res) => {
+const {getTypesApi} = require('../controllers/typesController')
+
+const getTypesHandler= async (req,res) => {
   try {
-    res.status(200).send("ok, estoy en types handlers");
+    const typesPokemon = await getTypesApi()
+    res.status(200).json(typesPokemon);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

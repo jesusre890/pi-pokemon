@@ -19,40 +19,45 @@ const getPokemons = async (name) => {
 
 const getPokemonsApi = async () => {
   try {
-    const api = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=10");
+    const api = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=5");
 
-    const pokeApi = await api.data.results; //guardo la info en una constante para luego mapear y modificar segun la info de la url
+    const pokeApi = api.data.results; //guardo la info en una constante para luego mapear y modificar segun la info de la url
 
     const pokemonDb = await getPokemons();
 
-    const dataPokemon = await pokeApi.map(async (e) => {
-      const infoApi = await axios.get(e.url);
+    const dataPokemon = await Promise.all(
+      //Con Promise.all se espera a que todas las promesas dentro de (dataPokemon) se resuelvan y obtienes un array con los resultados de cada promesa.
+      pokeApi.map(async (e) => {
+        const infoApi=await axios.get(e.url)
+        const info = infoApi.data
 
-      return {
-        id: infoApi.data.id,
-        name: infoApi.data.name,
-        types: infoApi.data.types.map((e) => e.type.name),
-        image: infoApi.data.sprites.front_default,
-        hp: infoApi.data.stats[0].base_stat,
-        attack: infoApi.data.stats[1].base_stat,
-        defense: infoApi.data.stats[2].base_stat,
-        speed: infoApi.data.stats[5].base_stat,
-        height: infoApi.data.height,
-        weight: infoApi.data.weight,
-      };
-    });
-
-    const pokemonAll = await Promise.all(dataPokemon);
-    return pokemonAll.concat(pokemonDb);
+        return {
+          id: info.id,
+          name: info.name,
+          types: info.types.map((e) => e.type.name),
+          image: info.sprites.front_default,
+          hp: info.stats[0].base_stat,
+          attack: info.stats[1].base_stat,
+          defense: info.stats[2].base_stat,
+          speed: info.stats[5].base_stat,
+          height: info.height,
+          weight: info.weight,
+        };
+      })
+    );
+    return [...dataPokemon,...pokemonDb];
+    //concateno ambos arreglos para juntar la info de api y db
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
 const getPokemonsById = async (idPokemon) => {
-  const source = isNaN(idPokemon) ? "bdd" : "api";
+  const source = isNaN(idPokemon) ? "bd" : "api";
   if (source === "api") {
-    const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`);
+    const pokemon = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${idPokemon}`
+    );
     return pokemon.data;
   }
   const pokemon = await Pokemon.findByPk(idPokemon);
