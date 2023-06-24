@@ -17,3 +17,4 @@ getTypesApi = async () => {
 module.exports = {
   getTypesApi,
 };
+

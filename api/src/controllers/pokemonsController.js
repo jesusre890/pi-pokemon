@@ -6,7 +6,7 @@ const axios = require("axios");
 const getPokemons = async (name) => {
   try {
     if (name) {
-      //trae el primero que encuentre
+      //trae el primero que encuentre en la base de datos
       const pokemonByName = await Pokemon.findOne({ where: { name } });
       return pokemonByName;
     }
