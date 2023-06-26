@@ -1,0 +1,22 @@
+.nav-container {
+  background-color: rgb(39, 39, 39);
+  display: flex;
+}
+
+.img-container img {
+  width: 5rem;
+  margin: 10px;
+}
+
+.link-container{
+    display: flex;
+    width: 10rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5vw;
+}
+
+.link-home, .link-crear{
+    color: whitesmoke;
+    text-decoration: none;
+}

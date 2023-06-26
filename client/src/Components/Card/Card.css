@@ -1,0 +1,19 @@
+.card-container{
+    background-color: red;
+    width: 20rem;
+    margin: 1rem;
+}
+
+/*.card-title{
+
+}*/
+
+.card-divisor{
+    height: 1px;
+    background-color: grey;
+}
+
+.card-info{
+    display: flex;
+    flex-direction: column;
+}
