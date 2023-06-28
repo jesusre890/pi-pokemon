@@ -1,14 +1,14 @@
-.nav-container {
+.navContainer {
   background-color: rgb(39, 39, 39);
   display: flex;
 }
 
-.img-container img {
+.imgContainer img {
   width: 5rem;
   margin: 10px;
 }
 
-.link-container{
+.linkContainer{
     display: flex;
     width: 10rem;
     justify-content: space-between;
@@ -16,7 +16,7 @@
     margin-left: 5vw;
 }
 
-.link-home, .link-crear{
+.linkHome, .linkCrear{
     color: whitesmoke;
     text-decoration: none;
 }

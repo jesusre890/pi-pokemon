@@ -1,5 +1,8 @@
-import React,{useState} from "react";
-import './Create.css'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createPokemons } from "../../redux/actions";
+//import "./Create.css";
+import style from './Create.module.css'
 
 const Create = () => {
   const [input, setInput] = useState({
@@ -9,9 +12,9 @@ const Create = () => {
     attack: "",
     defense: "",
     speed: "",
-    height: "",
-    weight: "",
-    types: [],
+    height: 0,
+    weight: 0,
+    types: '',
   });
 
   const [errors, setErrors] = useState({
@@ -23,48 +26,53 @@ const Create = () => {
     speed: "",
     height: "",
     weight: "",
-    types: [],
+    types: '',
   });
 
-  const validate = (input, name) => {
-    if(name==="name") {
-      
-      if (input.name !== "") setErrors({ ...errors, name: "" });
-      else setErrors({...errors,name: "Nombre es requerido"});
+  const dispatch=useDispatch();
 
-    } else if(name==="image") {
-      
+  const disable = () => {
+    let disabled = true;
+    for (let error in errors) {
+      if (errors[error] === "") disabled = false;
+      else {
+        disabled = true;
+        break;
+      }
+    }
+    return disabled;
+  };
+
+  const validate = (input, name) => {
+    if (name === "name") {
+      if (input.name !== "") setErrors({ ...errors, name: "" });
+      else setErrors({ ...errors, name: "Nombre es requerido" });
+    } else if (name === "image") {
       let regexImage = /^(http|https):\/\/[^\s]+(\.jpg|\.jpeg|\.png|\.gif)$/;
+
       if (input.image !== "") setErrors({ ...errors, image: "" });
       else {
-        setErrors({...errors,image: "Imagen es requerida"})
-        return
-      };
-
-      if(!regexImage.test(input.image)) setErrors({ ...errors, image: "" });
-      else setErrors({...errors,image: "Ingresa una url valida"})
-      //if(!input.image) errors.image="La imagen no puede estar vacia";
-      
-    } else if(name==="hp") {
-      
+        setErrors({ ...errors, image: "Imagen es requerida" });
+        return;
+      }
+      if (regexImage.test(input.image)) setErrors({ ...errors, image: "" });
+      else setErrors({ ...errors, image: "Ingresa una url valida" });
+    } else if (name === "hp") {
       if (input.hp !== "") setErrors({ ...errors, hp: "" });
-      else setErrors({...errors,name: "hp es requerido"});
-      
-    } else if(name==="attack") {
-      
+      else setErrors({ ...errors, hp: "hp es requerido" });
+    } else if (name === "attack") {
       if (input.attack !== "") setErrors({ ...errors, attack: "" });
-      else setErrors({...errors,name: "el ataque es requerido"});
-      
-    } else if(name==="defense") {
-      
+      else setErrors({ ...errors, attack: "el ataque es requerido" });
+    } else if (name === "defense") {
       if (input.defense !== "") setErrors({ ...errors, defense: "" });
-      else setErrors({ ...errors, name: "la defensa es requerida" });
+      else setErrors({ ...errors, defense: "la defensa es requerida" });
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //console.log(input);
+    console.log(input);
+    dispatch(createPokemons(input));
   };
 
   const handleChange = (event) => {
@@ -83,51 +91,51 @@ const Create = () => {
   };
 
   return (
-    <div className="form-container">
-      <form className="form" onSubmit={handleSubmit}>
-          <h3 className="form-title">Crea un pokemon</h3>
-          <div>
-            <label htmlFor="">Nombre:</label>
-            <input name="name" type="text" onChange={handleChange} />
-            {errors.name}
+    <div className={style.formContainer}>
+      <form className={style.form} onSubmit={handleSubmit}>
+        <h3 className={style.formTitle}>Crea un pokemon</h3>
+        <div>
+          <label>Nombre:</label>
+          <input name="name" type="text" onChange={handleChange} />
+          {errors.name}
+        </div>
+        <div>
+          <label>Imagen:</label>
+          <input name="image" type="text" onChange={handleChange} />
+          {errors.image}
+        </div>
+        <div>
+          <label>HP:</label>
+          <input name="hp" type="text" onChange={handleChange} />
+          {errors.hp}
+        </div>
+        <div>
+          <label>Ataque:</label>
+          <input name="attack" type="text" onChange={handleChange} />
+          {errors.attack}
+        </div>
+        <div>
+          <label>Defensa:</label>
+          <input name="defense" type="text" onChange={handleChange} />
+          {errors.defense}
+        </div>
+        <div>
+          <label>Velocidad:</label>
+          <input name="speed" type="text" onChange={handleChange} />
+        </div>
+        <div>
+          <label>Altura:</label>
+          <input name="height" type="text" onChange={handleChange} />
+        </div>
+        <div>
+          <label>Peso:</label>
+          <input name="weight" type="text" onChange={handleChange} />
+        </div>
+        <div>
+            <label>Tipo:</label>
+            <input name="types" type="text" onChange={handleChange} />
           </div>
-          <div>
-            <label htmlFor="">Imagen:</label>
-            <input name="image" type="text" onChange={handleChange} />
-            {errors.image}
-          </div>
-          <div>
-            <label htmlFor="">HP:</label>
-            <input name="hp" type="text" onChange={handleChange} />
-            {errors.hp}
-          </div>
-          <div>
-            <label htmlFor="">Ataque:</label>
-            <input name="attack" type="text" onChange={handleChange} />
-            {errors.arrack}
-          </div>
-          <div>
-            <label htmlFor="">Defensa:</label>
-            <input name="defense" type="text" onChange={handleChange} />
-            {errors.defense}
-          </div>
-          <div>
-            <label htmlFor="">Velocidad:</label>
-            <input name="speed" type="text" onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="">Altura:</label>
-            <input name="height" type="text" onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="">Peso:</label>
-            <input name="weight" type="text" onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="">Tipo:</label>
-            <input name="type" type="text" onChange={handleChange} />
-          </div>
-          <input type="submit" name="submit" />
+        <input disabled={disable()} type="submit" name="submit" />
       </form>
     </div>
   );

@@ -21,35 +21,70 @@ const getPokemonsApi = async () => {
   try {
     const api = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=5");
 
-    const pokeApi = api.data.results; //guardo la info en una constante para luego mapear y modificar segun la info de la url
+    const pokeApi = await api.data.results; //guardo la info en una constante para luego mapear y modificar segun la info de la url
 
-    const pokemonDb = await getPokemons();
+    const dataPokemon = pokeApi.map(async (pokemon) => {
+      const info = await axios.get(pokemon.url);
+      const i = info.data;
+      return {
+        id: i.id,
+        name: i.name,
+        types: i.types.map((e) => e.type.name),
+        image: i.sprites.other.home.front_default,
+        hp: i.stats[0].base_stat,
+        attack: i.stats[1].base_stat,
+        defense: i.stats[2].base_stat,
+        speed: i.stats[5].base_stat,
+        height: i.height,
+        weight: i.weight,
+      };
+    });
 
-    const dataPokemon = await Promise.all(
-      //Con Promise.all se espera a que todas las promesas dentro de (dataPokemon) se resuelvan y obtienes un array con los resultados de cada promesa.
-      pokeApi.map(async (e) => {
-        const infoApi=await axios.get(e.url)
-        const info = infoApi.data
-
-        return {
-          id: info.id,
-          name: info.name,
-          types: info.types.map((e) => e.type.name),
-          image: info.sprites.front_default,
-          hp: info.stats[0].base_stat,
-          attack: info.stats[1].base_stat,
-          defense: info.stats[2].base_stat,
-          speed: info.stats[5].base_stat,
-          height: info.height,
-          weight: info.weight,
-        };
-      })
-    );
-    return [...dataPokemon,...pokemonDb];
-    //concateno ambos arreglos para juntar la info de api y db
+    const getAllPokemon = await Promise.all(dataPokemon);
+    return getAllPokemon;
   } catch (error) {
     throw new Error(error.message);
   }
+};
+
+const getPokemonsDb = async () => {
+  const allPokemonsDb = await Pokemon.findAll({
+    include: {
+      model: Type,
+      atributes: ["name"],
+    },
+  });
+  const mapPokeInfo = allPokemonsDb.map((e) => {
+    return {
+      id: e.id,
+      name: e.name,
+      types: e.types.map((e) => e.type.name),
+      image: e.image,
+      hp: e.stats[0].base_stat,
+      attack: e.stats[1].base_stat,
+      defense: e.stats[2].base_stat,
+      speed: e.stats[5].base_stat,
+      height: e.height,
+      weight: e.weight,
+    };
+  });
+  return mapPokeInfo;
+};
+
+const getAllPokemons = async (name) => {
+  const pokemonsDb = await getPokemonsDb();
+  const pokemonsApi = await getPokemonsApi();
+  const allPokemon = pokemonsDb.concat(pokemonsApi);
+
+  let pokemonName;
+  if (name) {
+    pokemonName = allPokemon.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(name.toLowerCase())
+    );
+    if (pokemonName.length) return pokemonName;
+    throw new Error("No se encontro ningun pokemon con ese nombre");
+  }
+  return allPokemon;
 };
 
 const getPokemonsById = async (idPokemon) => {
@@ -70,11 +105,12 @@ const createPokemon = async (
   hp,
   attack,
   defense,
-  speed,
-  height,
-  weight,
+  speed = null,
+  height = null,
+  weight = null,
   types
 ) => {
+  console.log("estoy por crear ");
   const [pokemon, created] = await Pokemon.findOrCreate({
     where: { name }, //especifica el campo y valor para la busqueda
     defaults: {
@@ -100,6 +136,8 @@ const createPokemon = async (
 module.exports = {
   getPokemons,
   getPokemonsApi,
+  getPokemonsDb,
+  getAllPokemons,
   getPokemonsById,
   createPokemon,
 };

@@ -1,21 +1,21 @@
 import React from "react";
 import logo from "../../img-pk/pokeballLogo.png";
-import './Navbar.css'
+import style from './Navbar.module.css'
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="nav-container">
+    <div className={style.navContainer}>
       <Link to={"/home"}>
-        <div className="img-container">
+        <div className={style.imgContainer}>
           <img src={logo} alt="logoPokeball" />
         </div>
       </Link>
-      <div className="link-container">
-        <Link className="link-home" to={"/home"}>
+      <div className={style.linkContainer}>
+        <Link className={style.linkHome} to={"/home"}>
           Home
         </Link>
-        <Link className="link-crear" to={"/create"}>
+        <Link className={style.linkCrear} to={"/create"}>
           Crear
         </Link>
       </div>
