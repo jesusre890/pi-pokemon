@@ -4,32 +4,21 @@ import style from './Pagination.module.css'
 export default function Pagination({
   pokemonsPerPage,
   allPokemons,
-  pagination,
-  page,
+  pagination
 }) {
   const pageNumbers = [];
 
-  for (let i = 0; i < Math.ceil(allPokemons / pokemonsPerPage); i++) {
-    pageNumbers.push(i + 1);
+  for (let i = 0; i <= Math.ceil(allPokemons / pokemonsPerPage); i++) {
+    pageNumbers.push(i+1);
   }
 
   return (
     <nav>
-      <ul className='ulPagination'>
+      <ul className={style.pagination}>
         {pageNumbers &&
-          pageNumbers.map((number) => (
-            <li key={number} style={{ listStyle: "none" }}>
-              <button
-                className='buttons'
-                style={
-                  page === number
-                    ? { color: "white", background: "darkgrey" }
-                    : {}
-                }
-                onClick={() => pagination(number)}
-              >
-                {number}
-              </button>
+          pageNumbers.map(number => (
+            <li className={style.listPage} key={number}>
+              <a onClick={() => pagination(number)}>{number}</a>
             </li>
           ))}
       </ul>

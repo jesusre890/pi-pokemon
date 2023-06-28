@@ -1,18 +1,20 @@
 import React from "react";
 import style from './Card.module.css'
 
-const Card = (props) => {
+const Card = ({ id, image, name, types }) => {
   return (
     <div className={style.cardContainer}>
       <div className={style.cardTitle}>
-        <h2>{props.name}</h2>
+        <h3>{name}</h3>
+        <h5>{id}</h5>
       </div>
-      <div className={style.cardDivisor}/>
+
       <div className={style.cardInfo}>
-        <h4>{props.id}</h4>
         <br />
-        <h4>{props.hp}</h4>
-        <img src={props.image} alt={props.name} />
+        <img src={image} alt={name} />
+      </div>
+      <div className={style.cardInfo}>
+          <h5>{types}</h5>
       </div>
     </div>
   );

@@ -9,19 +9,21 @@ const getPokemonsHandler = async (req, res) => {
   try {
     if (name) {
       const response = await getAllPokemons(name);
-      res.status(200).json(response);
+      res.status(200).send(response);
     }
     const response = await getAllPokemons();
-    res.status(200).json(response);
+    res.status(200).send(response);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).send({ error: error.message });
   }
 };
 
 const getPokemonsIdHandler = async(req, res) => {
   const {idPokemon}=req.params;
+  //console.log(idPokemon);
   try {
-    const response = await getPokemonsById(idPokemon)
+    const response=await getPokemonsById(idPokemon)
+    console.log(response);
     res.status(200).json(response);    
   } catch (error) {
     res.status(400).json({ error: error.message });

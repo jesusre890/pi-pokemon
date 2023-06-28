@@ -3,19 +3,19 @@ const axios = require("axios");
 
 //Obtiene un arreglo de objetos, donde cada objeto es un pokemon con su información.
 
-const getPokemons = async (name) => {
-  try {
-    if (name) {
-      //trae el primero que encuentre en la base de datos
-      const pokemonByName = await Pokemon.findOne({ where: { name } });
-      return pokemonByName;
-    }
-    const allPokemon = await Pokemon.findAll();
-    return allPokemon;
-  } catch (error) {
-    throw new Error(error.message);
-  }
-};
+//const getPokemons = async (name) => {
+//  try {
+//    if (name) {
+//      //trae el primero que encuentre en la base de datos
+//      const pokemonByName = await Pokemon.findOne({ where: { name } });
+//      return pokemonByName;
+//    }
+//    const allPokemon = await Pokemon.findAll();
+//    return allPokemon;
+//  } catch (error) {
+//    throw new Error(error.message);
+//  }
+//};
 
 const getPokemonsApi = async () => {
   try {
@@ -48,22 +48,23 @@ const getPokemonsApi = async () => {
 };
 
 const getPokemonsDb = async () => {
-  const allPokemonsDb = await Pokemon.findAll({
+  const allPokemonsDb=await Pokemon.findAll({
+    raw:true,
     include: {
       model: Type,
       atributes: ["name"],
     },
   });
+  console.log('all pokemon',allPokemonsDb);
   const mapPokeInfo = allPokemonsDb.map((e) => {
     return {
       id: e.id,
       name: e.name,
-      types: e.types.map((e) => e.type.name),
       image: e.image,
-      hp: e.stats[0].base_stat,
-      attack: e.stats[1].base_stat,
-      defense: e.stats[2].base_stat,
-      speed: e.stats[5].base_stat,
+      hp: e.hp,
+      attack: e.attack,
+      defense: e.defense,
+      speed:e.speed,
       height: e.height,
       weight: e.weight,
     };
@@ -72,9 +73,11 @@ const getPokemonsDb = async () => {
 };
 
 const getAllPokemons = async (name) => {
-  const pokemonsDb = await getPokemonsDb();
+  const pokemonsDb=await getPokemonsDb();
+  console.log(getPokemonsDb);
   const pokemonsApi = await getPokemonsApi();
-  const allPokemon = pokemonsDb.concat(pokemonsApi);
+  const allPokemon=pokemonsDb.concat(pokemonsApi);
+  //console.log(allPokemon);
 
   let pokemonName;
   if (name) {
@@ -87,16 +90,17 @@ const getAllPokemons = async (name) => {
   return allPokemon;
 };
 
-const getPokemonsById = async (idPokemon) => {
-  const source = isNaN(idPokemon) ? "bd" : "api";
-  if (source === "api") {
-    const pokemon = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${idPokemon}`
-    );
-    return pokemon.data;
+const getPokemonsById=async (idPokemon) => {
+  const all=await getAllPokemons();
+  //console.log('allggggg',all);
+  const byId=await all.filter((e) => String(e.id)===idPokemon);
+  //console.log('byId',byId);
+  //console.log(typeof idPokemon);
+  if (byId.length) {
+    return byId
+  } else {
+    throw new Error(`Pokemon no encontrado, id: ${idPokemon} incorrecto`);
   }
-  const pokemon = await Pokemon.findByPk(idPokemon);
-  return pokemon;
 };
 
 const createPokemon = async (
@@ -110,7 +114,7 @@ const createPokemon = async (
   weight = null,
   types
 ) => {
-  console.log("estoy por crear ");
+  //console.log("estoy por crear ");
   const [pokemon, created] = await Pokemon.findOrCreate({
     where: { name }, //especifica el campo y valor para la busqueda
     defaults: {
@@ -134,10 +138,21 @@ const createPokemon = async (
 };
 
 module.exports = {
-  getPokemons,
   getPokemonsApi,
   getPokemonsDb,
   getAllPokemons,
   getPokemonsById,
   createPokemon,
 };
+
+//const getPokemonsById = async (idPokemon) => {
+//  const source = isNaN(idPokemon) ? "bd" : "api";
+//  if (source === "api") {
+//    const pokemon = await axios.get(
+//      `https://pokeapi.co/api/v2/pokemon/${idPokemon}`
+//    );
+//    return pokemon.data;
+//  }
+//  const pokemon = await Pokemon.findByPk(idPokemon);
+//  return pokemon;
+//};

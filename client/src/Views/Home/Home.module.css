@@ -1,0 +1,13 @@
+.linkCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 15px;
+    min-height: 90vh;
+}
+
+.card{
+    text-decoration: none;
+    color: rgb(45, 85, 55);
+}

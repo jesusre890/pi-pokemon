@@ -2,8 +2,9 @@ import axios from "axios";
 
 //ACTIONS-TYPES
 export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";
+export const CREATE_POKEMONS="CREATE_POKEMONS";
+export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 //export const GET_POKEMONS_BY_ID = "GET_POKEMONS_BY_ID";
-export const CREATE_POKEMONS = "CREATE_POKEMONS";
 //export const FILTERS="FILTERS";
 //export const GET_TYPES_API = "GET_TYPES_API";
 
@@ -36,6 +37,12 @@ export const createPokemons = (info) => {
   };
 };
 
+export const filterByOrigin = (value) => {
+  return {
+    type: FILTER_BY_ORIGIN,
+    payload: value,
+  };
+};
 //export const filter = (orden) => {
 //  return function (dispatch) {
 //    return dispatch({
