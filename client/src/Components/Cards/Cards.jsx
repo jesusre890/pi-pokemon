@@ -7,14 +7,14 @@ const Cards=({allPokemons}) => {
 
   return (
     <div className={style.cardsContainer}>
-      {allPokemons.map((pokemon, index) => (
+      {/*{allPokemons.map((pokemon, index) => (
         <Card
           key={index}
           name={pokemon.name}
           hp={pokemon.hp}
           image={pokemon.image}
         />
-      ))}
+      ))}*/}
     </div>
   );
 };

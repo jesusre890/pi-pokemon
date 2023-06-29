@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID, // alfanumerico unico
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
@@ -41,6 +41,11 @@ module.exports = (sequelize) => {
       },
       weight: {
         type: DataTypes.INTEGER,
+      },
+      createdInDb: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
       },
     },
     { freezeTableName: true, timestamps: false } // para que no se generen las columnas de los datos

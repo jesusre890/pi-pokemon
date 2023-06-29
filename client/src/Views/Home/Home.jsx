@@ -33,11 +33,10 @@ const Home = () => {
     dispatch(getAllPokemon());
   };
 
-  const handleFilterOrigin = (e) => {
-    if (e.target.value !== "Origen") {
-      dispatch(filterByOrigin(e.target.value));
-    }
-  };
+  //const handleFilterOrigin = (e) => {
+  //    dispatch(filterByOrigin(e.target.value));
+
+  //};
 
   return (
     <div className={style.homeContainer}>
@@ -54,31 +53,32 @@ const Home = () => {
           <option value="des">Z - A</option>
         </select>
         <select>
-          <option value="min">Ataques</option>
+          <option value="attack">Ataques</option>
           <option value="min">min</option>
           <option value="max">max</option>
         </select>
-        <select onChange={(e) => handleFilterOrigin(e)}>
+        <select>
           <option value="All">Origen</option>
           <option value="db">Creados</option>
           <option value="api">Api</option>
         </select>
         <Pagination
-        pokemonsPerPage={pokemonsPerPage}
-        allPokemons={allPokemons.length}
-        pagination={pagination}
-      />
+          pokemonsPerPage={pokemonsPerPage}
+          allPokemons={allPokemons.length}
+          pagination={pagination}
+        />
       </div>
       <div className={style.linkCard}>
-        {currentPokemons?.map((e) => {
+        {currentPokemons?.map((e, index) => {
           return (
-            <Link className={style.card} to={"/home/" + e.id}>
+            <Link key={index} className={style.card} to={"/detail" + e.id}>
               <Card
                 name={e.name}
+                hp={e.hp}
                 image={e.image}
                 id={e.id}
                 types={e.types}
-                key={e.id}
+                key={index}
               />
             </Link>
           );

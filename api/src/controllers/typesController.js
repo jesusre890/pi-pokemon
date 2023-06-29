@@ -1,20 +1,21 @@
 const { Type } = require("../db");
 const axios = require("axios");
 
-getTypesApi = async () => {
-  const infoApi = await axios.get("https://pokeapi.co/api/v2/type/");
+const getTypesApi = async () => {
+  let allTypes = [];
+
+  const infoApi = await axios.get("https://pokeapi.co/api/v2/type");
   const resultApi = await infoApi.data.results;
 
-  let types = resultApi.map((e) => e.name);
+  resultApi.map((e) => allTypes.push(e.name));
   //extraigo los typos y lo guardo en el arreglo types
   await Promise.all(
-    types.map((e) => Type.findOrCreate({ where: { name: e }}))
+    allTypes.map((type) => Type.findOrCreate({ where: { name: type } }))
   );
   const typesDb = await Type.findAll();
   return typesDb;
 };
 
 module.exports = {
-  getTypesApi,
+  getTypesApi
 };
-

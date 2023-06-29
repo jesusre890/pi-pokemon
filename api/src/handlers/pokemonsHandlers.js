@@ -18,21 +18,31 @@ const getPokemonsHandler = async (req, res) => {
   }
 };
 
-const getPokemonsIdHandler = async(req, res) => {
-  const {idPokemon}=req.params;
+const getPokemonsIdHandler = async (req, res) => {
+  const { idPokemon } = req.params;
   //console.log(idPokemon);
   try {
-    const response=await getPokemonsById(idPokemon)
-    console.log(response);
-    res.status(200).json(response);    
+    const response = await getPokemonsById(idPokemon);
+    //console.log(response);
+    res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
 const createPokemonsHandler = async (req, res) => {
-  const { name, image, hp, attack, defense, speed=null, height=null, weight=null, types } =
-    req.body;
+  const {
+    name,
+    image,
+    hp,
+    attack,
+    defense,
+    speed = null,
+    height = null,
+    weight = null,
+    createdInDb = true,
+    types,
+  } = req.body;
   //console.log('entre');
   try {
     const pokemon = await createPokemon(
@@ -44,12 +54,12 @@ const createPokemonsHandler = async (req, res) => {
       speed,
       height,
       weight,
+      createdInDb,
       types
     );
-    //console.log('esto es lo que estoy creando ',pokemon);
-    res.status(200).send({ pokemon });
+    res.status(200).json({ pokemon });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({error: error.message});
   }
 };
 

@@ -3,9 +3,8 @@ import axios from "axios";
 //ACTIONS-TYPES
 export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";
 export const CREATE_POKEMONS="CREATE_POKEMONS";
-export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
+//export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 //export const GET_POKEMONS_BY_ID = "GET_POKEMONS_BY_ID";
-//export const FILTERS="FILTERS";
 //export const GET_TYPES_API = "GET_TYPES_API";
 
 //ACTIONS
@@ -22,7 +21,7 @@ export const getAllPokemon = () => {
 };
 
 export const createPokemons = (info) => {
-  return async (dispatch) => {
+  return async () => {
     try {
       const response = await axios.post(
         "http://localhost:3001/pokemons/create",
@@ -37,12 +36,20 @@ export const createPokemons = (info) => {
   };
 };
 
-export const filterByOrigin = (value) => {
+export function filterCreated(payload) {
   return {
-    type: FILTER_BY_ORIGIN,
-    payload: value,
-  };
-};
+    type: 'FILTER_CREATED',
+    payload
+  }
+}
+
+//export const filterByOrigin=(payload) => {
+//  console.log(payload);
+//  return {
+//    type: FILTER_BY_ORIGIN,
+//    payload
+//  };
+//};
 //export const filter = (orden) => {
 //  return function (dispatch) {
 //    return dispatch({
