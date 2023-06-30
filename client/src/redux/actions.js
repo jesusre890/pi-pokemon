@@ -4,8 +4,8 @@ import axios from "axios";
 export const GET_POKEMONS = "GET_POKEMONS";
 export const CREATE_POKEMONS = "CREATE_POKEMONS";
 export const FILTER_CREATED = "FILTER_CREATED";
-//export const GET_POKEMONS_BY_ID = "GET_POKEMONS_BY_ID";
-//export const GET_TYPES_API = "GET_TYPES_API";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const GET_NAME_POKEMONS = "GET_NAME_POKEMONS";
 
 //ACTIONS
 export const getPokemons = () => {
@@ -36,25 +36,33 @@ export const createPokemons = (info) => {
   };
 };
 
-export function filterCreated(payload) {
+export const getNamePokemons=(name) => {
+  //console.log('despacho desde actions');
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(
+        "http://localhost:3001/pokemons?name=" + name
+      );
+      return dispatch({
+        type: 'GET_NAME_POKEMONS',
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export const filterCreated = (payload) => {
   return {
     type: "FILTER_CREATED",
     payload,
   };
-}
+};
 
-//export const filterByOrigin=(payload) => {
-//  console.log(payload);
-//  return {
-//    type: FILTER_BY_ORIGIN,
-//    payload
-//  };
-//};
-//export const filter = (orden) => {
-//  return function (dispatch) {
-//    return dispatch({
-//      type: FILTERS,
-//      payload: orden,
-//    });
-//  };
-//};
+export const orderByName = (payload) => {
+  return {
+    type: "ORDER_BY_NAME",
+    payload,
+  };
+};

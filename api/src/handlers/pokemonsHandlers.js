@@ -9,7 +9,7 @@ const getPokemonsHandler = async (req, res) => {
   try {
     if (name) {
       const response = await getAllPokemons(name);
-      res.status(200).send(response);
+      return res.status(200).send(response);
     }
     const response = await getAllPokemons();
     res.status(200).send(response);

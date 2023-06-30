@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+// install react-redux
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons, filterCreated } from "../../redux/actions";
-//import Cards from "../../Components/Cards/Cards";
-import Card from "../../Components/Card/Card";
+import { getPokemons, filterCreated, orderByName } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
+// componentes
+import Card from "../../Components/Card/Card";
 import Pagination from "../../Components/Pagination.jsx/Pagination";
+import SearchBar from "../../Components/SearchBar/SearchBar";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allPokemons = useSelector((state) => state.pokemons);
+  const [orden, setOrden] = useState("");
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
@@ -33,8 +36,15 @@ const Home = () => {
     dispatch(getPokemons());
   };
 
+  const handleSort = (e) => {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1); // Lo setea en la pagina 1
+    setOrden(`Ordenado ${e.target.value}`); //modifica el estado local para hacer el ordenamiento
+  };
+
   const handleFilterCreated = (e) => {
-      dispatch(filterCreated(e.target.value));
+    dispatch(filterCreated(e.target.value));
   };
 
   return (
@@ -46,8 +56,9 @@ const Home = () => {
       >
         Recargar
       </button>
+      <SearchBar/>
       <div>
-        <select>
+        <select onChange={(e) => handleSort(e)}>
           <option value="asc">A - Z</option>
           <option value="des">Z - A</option>
         </select>
@@ -56,17 +67,17 @@ const Home = () => {
           <option value="min">min</option>
           <option value="max">max</option>
         </select>
-        <select onChange={e => handleFilterCreated(e)}>
+        <select onChange={(e) => handleFilterCreated(e)}>
           <option value="All">Origen</option>
           <option value="created">Creados</option>
           <option value="api">Api</option>
         </select>
       </div>
-        <Pagination
-          pokemonsPerPage={pokemonsPerPage}
-          allPokemons={allPokemons.length}
-          pagination={pagination}
-        />
+      <Pagination
+        pokemonsPerPage={pokemonsPerPage}
+        allPokemons={allPokemons.length}
+        pagination={pagination}
+      />
       <div className={style.linkCard}>
         {currentPokemons?.map((e, index) => {
           return (

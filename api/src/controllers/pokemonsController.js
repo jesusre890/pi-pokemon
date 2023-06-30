@@ -51,31 +51,33 @@ const getPokemonsApi = async () => {
 const getPokemonsDb = async () => {
   const allPokemonsDb = await Pokemon.findAll({
     //busco en la tabla los modelos que necesito
-    raw: true,
+    //raw: true,
     include: {
       model: Type,
       atributes: ["name"],
     },
   });
   //console.log('all pokemon',allPokemonsDb);
-  const mapPokeInfo = allPokemonsDb.map((e) => {
+  const mapPoke = allPokemonsDb.map((e) => {
     return {
       id: e.id,
       name: e.name,
       image: e.image,
+      types: e.Types,
       hp: e.hp,
       attack: e.attack,
       defense: e.defense,
       speed: e.speed,
       height: e.height,
       weight: e.weight,
-      createdInDb: e.createdInDb
+      createdInDb: e.createdInDb,
     };
   });
-  return mapPokeInfo;
+  return mapPoke;
 };
 
-const getAllPokemons = async (name) => {
+const getAllPokemons=async (name) => {
+  console.log('estoy en el controller', name);
   const pokemonsDb = await getPokemonsDb();
   //console.log(getPokemonsDb);
   const pokemonsApi = await getPokemonsApi();
@@ -85,7 +87,7 @@ const getAllPokemons = async (name) => {
   let pokemonName;
   if (name) {
     pokemonName = allPokemon.filter(
-      (pokemon) => pokemon.name.toLowerCase().includes(name.toLowerCase()) //verifico que siempre sea la busqueda en minuscula
+      (e) => e.name.toLowerCase().includes(name.toLowerCase()) //verifico que siempre sea la busqueda en minuscula
     );
     if (pokemonName.length) return pokemonName;
     throw new Error("No se encontro ningun pokemon con ese nombre");
@@ -119,8 +121,8 @@ const createPokemon = async (
   types
 ) => {
   //console.log("estoy por crear ");
-  const [pokemon,created]=await Pokemon.findOrCreate({
-    where: {name},
+  const [pokemon, created] = await Pokemon.findOrCreate({
+    where: { name },
     defaults: {
       name,
       image,
@@ -130,13 +132,13 @@ const createPokemon = async (
       speed,
       height,
       weight,
-      createdInDb
+      createdInDb,
     },
   });
-    if (!created) throw new Error("Este pokemon ya existe en la DB");
-  const typesDb=await Type.findAll({where: {name: types}});
-  
-  pokemon.addTypes(typesDb);  
+  if (!created) throw new Error("Este pokemon ya existe en la DB");
+  const typesDb = await Type.findAll({ where: { name: types } });
+
+  pokemon.addTypes(typesDb);
 
   //const poke = await Pokemon.findOne({
   //  where: { name },

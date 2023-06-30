@@ -19,6 +19,7 @@ export default function Pagination({
           pageNumbers.map((number, index) => (
             <li className={style.listPage} key={index}>
               <a onClick={() => pagination(number)}>{number}</a>
+              <a href=""></a>
             </li>
           ))}
       </ul>

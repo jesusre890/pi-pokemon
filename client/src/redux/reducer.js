@@ -1,4 +1,4 @@
-import { GET_POKEMONS, CREATE_POKEMONS, FILTER_CREATED } from "./actions";
+import { GET_POKEMONS, CREATE_POKEMONS, FILTER_CREATED, ORDER_BY_NAME, GET_NAME_POKEMONS } from "./actions";
 
 let initialState = {
   pokemons: [],
@@ -13,7 +13,12 @@ const rootReducer = (state = initialState, action) => {
         pokemons: action.payload,
         allPokemons:action.payload
       };
-
+    case GET_NAME_POKEMONS:
+      //console.log('estoy en el payload', action.payload);
+      return {
+        ...state,
+        pokemons: action.payload
+      }
     case CREATE_POKEMONS:
       return {
         ...state,
@@ -29,48 +34,32 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: action.payload === 'All' ? state.allPokemons : createdFilter
       }
-    
-    
-    
-    
-    
-    //case FILTER_BY_ORIGIN:
-    //  const allPokemons = state.allPokemons;
-    //  const byOrigin =
-    //    action.payload === "attack"
-    //      ? allPokemons
-    //      : allPokemons.filter((e) => e.hp === action.payload);
-    //  return {
-    //    ...state,
-    //    pokemonFiltered: byOrigin
-    //  };
-    //case FILTER_BY_ORIGIN:
-    //  const regexUUID =
-    //    /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
-    //  if (action.payload === "All") {
-    //    return {
-    //      ...state,
-    //      pokemonsFilter: state.allPokemons,
-    //    };
-    //  }
-    //  if (action.payload === "db") {
-    //    let pokemonsFilterDb = state.allPokemons.filter((pokemon) =>
-    //      regexUUID.test(pokemon.id)
-    //    );
-    //    return {
-    //      ...state,
-    //      pokemonsFilter: pokemonsFilterDb,
-    //    };
-    //  }
-    //  if (action.payload === "api") {
-    //    let pokemonsFilterApi = state.allPokemons.filter(
-    //      (pokemon) => !regexUUID.test(pokemon.id)
-    //    );
-    //    return {
-    //      ...state,
-    //      pokemonsFilter: pokemonsFilterApi,
-    //    };
-    //  }
+    case ORDER_BY_NAME:
+      let sortedAll =
+        action.payload === "asc"
+          ? state.pokemons.sort((a, b) => {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.pokemons.sort((a, b) => {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
+          });
+      return {
+        ...state,
+        pokemons: sortedAll
+      }
+
     default:
       return { ...state };
   }
