@@ -37,6 +37,7 @@ const getPokemonsApi = async () => {
         speed: i.stats[5].base_stat,
         height: i.height,
         weight: i.weight,
+        //createPokemon: false
       };
     });
 
@@ -48,8 +49,9 @@ const getPokemonsApi = async () => {
 };
 
 const getPokemonsDb = async () => {
-  const allPokemonsDb=await Pokemon.findAll({ //busco en la tabla los modelos que necesito
-    raw:true,
+  const allPokemonsDb = await Pokemon.findAll({
+    //busco en la tabla los modelos que necesito
+    raw: true,
     include: {
       model: Type,
       atributes: ["name"],
@@ -64,25 +66,26 @@ const getPokemonsDb = async () => {
       hp: e.hp,
       attack: e.attack,
       defense: e.defense,
-      speed:e.speed,
+      speed: e.speed,
       height: e.height,
       weight: e.weight,
+      createdInDb: e.createdInDb
     };
   });
   return mapPokeInfo;
 };
 
 const getAllPokemons = async (name) => {
-  const pokemonsDb=await getPokemonsDb();
+  const pokemonsDb = await getPokemonsDb();
   //console.log(getPokemonsDb);
   const pokemonsApi = await getPokemonsApi();
-  const allPokemon=pokemonsDb.concat(pokemonsApi);
+  const allPokemon = pokemonsDb.concat(pokemonsApi);
   //console.log(allPokemon);
 
   let pokemonName;
   if (name) {
-    pokemonName = allPokemon.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(name.toLowerCase()) //verifico que siempre sea la busqueda en minuscula
+    pokemonName = allPokemon.filter(
+      (pokemon) => pokemon.name.toLowerCase().includes(name.toLowerCase()) //verifico que siempre sea la busqueda en minuscula
     );
     if (pokemonName.length) return pokemonName;
     throw new Error("No se encontro ningun pokemon con ese nombre");
@@ -90,14 +93,14 @@ const getAllPokemons = async (name) => {
   return allPokemon;
 };
 
-const getPokemonsById=async (idPokemon) => {
-  const all=await getAllPokemons();
+const getPokemonsById = async (idPokemon) => {
+  const all = await getAllPokemons();
   //console.log('allggggg',all);
-  const byId=await all.filter((e) => String(e.id)===idPokemon);
+  const byId = await all.filter((e) => String(e.id) === idPokemon);
   //console.log('byId',byId);
   //console.log(typeof idPokemon);
   if (byId.length) {
-    return byId
+    return byId;
   } else {
     throw new Error(`Pokemon no encontrado, id: ${idPokemon} incorrecto`);
   }
@@ -111,33 +114,36 @@ const createPokemon = async (
   defense,
   speed = null,
   height = null,
-  weight=null,
+  weight = null,
   createdInDb,
   types
 ) => {
   //console.log("estoy por crear ");
-  const [pokemon, created] = await Pokemon.findOrCreate({
-    where: { name }, //especifica el campo y valor para la busqueda
+  const [pokemon,created]=await Pokemon.findOrCreate({
+    where: {name},
     defaults: {
-      name: name,
-      image: image,
-      hp: hp,
-      attack: attack,
-      defense: defense,
-      speed: speed,
-      height: height,
-      weight: weight,
-      createdInDb: createdInDb
+      name,
+      image,
+      hp,
+      attack,
+      defense,
+      speed,
+      height,
+      weight,
+      createdInDb
     },
   });
-  //console.log(name);
-  if (!created) throw new Error("Este pokemon ya existe");
+    if (!created) throw new Error("Este pokemon ya existe en la DB");
+  const typesDb=await Type.findAll({where: {name: types}});
+  
+  pokemon.addTypes(typesDb);  
 
-  const typesDb = await Type.findAll({ where: { name: types } });
-  pokemon.addTypes(typesDb);
-  //console.log(typesPokemon);
-  //console.log(pokemon);
-  //console.log(pokemon);
+  //const poke = await Pokemon.findOne({
+  //  where: { name },
+  //  include: { model: Type, attributes: ["name"] },
+  //});
+  //console.log(poke.Types);
+
   return pokemon;
 };
 

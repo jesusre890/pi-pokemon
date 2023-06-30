@@ -11,7 +11,7 @@ const Create = () => {
     hp: "",
     attack: "",
     defense: "",
-    speed: "",
+    speed: '',
     height: 0,
     weight: 0,
     types: '',

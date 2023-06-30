@@ -57,7 +57,9 @@ const createPokemonsHandler = async (req, res) => {
       createdInDb,
       types
     );
+    //res.status(200).json({pokemon});
     res.status(200).json({ pokemon });
+    //console.log(pokemon);
   } catch (error) {
     res.status(400).json({error: error.message});
   }

@@ -1,19 +1,19 @@
 import axios from "axios";
 
 //ACTIONS-TYPES
-export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";
-export const CREATE_POKEMONS="CREATE_POKEMONS";
-//export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
+export const GET_POKEMONS = "GET_POKEMONS";
+export const CREATE_POKEMONS = "CREATE_POKEMONS";
+export const FILTER_CREATED = "FILTER_CREATED";
 //export const GET_POKEMONS_BY_ID = "GET_POKEMONS_BY_ID";
 //export const GET_TYPES_API = "GET_TYPES_API";
 
 //ACTIONS
-export const getAllPokemon = () => {
+export const getPokemons = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get("http://localhost:3001/pokemons");
       //console.log(response.data);
-      return dispatch({ type: GET_ALL_POKEMONS, payload: response.data });
+      return dispatch({ type: GET_POKEMONS, payload: response.data });
     } catch (error) {
       console.log(error);
     }
@@ -38,9 +38,9 @@ export const createPokemons = (info) => {
 
 export function filterCreated(payload) {
   return {
-    type: 'FILTER_CREATED',
-    payload
-  }
+    type: "FILTER_CREATED",
+    payload,
+  };
 }
 
 //export const filterByOrigin=(payload) => {
@@ -58,5 +58,3 @@ export function filterCreated(payload) {
 //    });
 //  };
 //};
-
-

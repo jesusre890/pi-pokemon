@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPokemon, filterByOrigin } from "../../redux/actions";
+import { getPokemons, filterCreated } from "../../redux/actions";
 //import Cards from "../../Components/Cards/Cards";
 import Card from "../../Components/Card/Card";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import Pagination from "../../Components/Pagination.jsx/Pagination";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const allPokemons = useSelector((state) => state.allPokemons);
+  const allPokemons = useSelector((state) => state.pokemons);
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
@@ -25,18 +25,17 @@ const Home = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllPokemon());
+    dispatch(getPokemons());
   }, [dispatch]);
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(getAllPokemon());
+    dispatch(getPokemons());
   };
 
-  //const handleFilterOrigin = (e) => {
-  //    dispatch(filterByOrigin(e.target.value));
-
-  //};
+  const handleFilterCreated = (e) => {
+      dispatch(filterCreated(e.target.value));
+  };
 
   return (
     <div className={style.homeContainer}>
@@ -57,17 +56,17 @@ const Home = () => {
           <option value="min">min</option>
           <option value="max">max</option>
         </select>
-        <select>
+        <select onChange={e => handleFilterCreated(e)}>
           <option value="All">Origen</option>
-          <option value="db">Creados</option>
+          <option value="created">Creados</option>
           <option value="api">Api</option>
         </select>
+      </div>
         <Pagination
           pokemonsPerPage={pokemonsPerPage}
           allPokemons={allPokemons.length}
           pagination={pagination}
         />
-      </div>
       <div className={style.linkCard}>
         {currentPokemons?.map((e, index) => {
           return (

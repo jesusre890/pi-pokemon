@@ -1,16 +1,17 @@
-import { GET_ALL_POKEMONS, CREATE_POKEMONS } from "./actions";
+import { GET_POKEMONS, CREATE_POKEMONS, FILTER_CREATED } from "./actions";
 
 let initialState = {
-  allPokemons: [],
-  pokemonFiltered: [],
+  pokemons: [],
+  allPokemons: []
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_POKEMONS:
+    case GET_POKEMONS:
       return {
         ...state,
-        allPokemons: action.payload,
+        pokemons: action.payload,
+        allPokemons:action.payload
       };
 
     case CREATE_POKEMONS:
@@ -18,9 +19,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         type: action.payload,
       };
-    //case 'FILTER_CREATED':
-    //  const allPokemons = state.allPokemons
-    //  const createdFilter = action.payload === 'created' ? allPokemons.filter
+    case FILTER_CREATED:
+      //const allPokemonsFiltered = state.allPokemons
+      const createdFilter =
+        action.payload === "created"
+          ? state.allPokemons.filter((e) => e.createdInDb)
+          : state.allPokemons.filter((e) => !e.createdInDb);
+      return{ 
+        ...state,
+        pokemons: action.payload === 'All' ? state.allPokemons : createdFilter
+      }
     
     
     
