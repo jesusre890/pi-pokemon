@@ -5,7 +5,8 @@ export const GET_POKEMONS = "GET_POKEMONS";
 export const CREATE_POKEMONS = "CREATE_POKEMONS";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
-export const GET_NAME_POKEMONS = "GET_NAME_POKEMONS";
+export const GET_NAME_POKEMONS="GET_NAME_POKEMONS";
+export const GET_TYPES = "GET_TYPES";
 
 //ACTIONS
 export const getPokemons = () => {
@@ -36,7 +37,7 @@ export const createPokemons = (info) => {
   };
 };
 
-export const getNamePokemons=(name) => {
+export const getNamePokemons = (name) => {
   //console.log('despacho desde actions');
   return async (dispatch) => {
     try {
@@ -44,14 +45,21 @@ export const getNamePokemons=(name) => {
         "http://localhost:3001/pokemons?name=" + name
       );
       return dispatch({
-        type: 'GET_NAME_POKEMONS',
-        payload: response.data
-      })
+        type: "GET_NAME_POKEMONS",
+        payload: response.data,
+      });
     } catch (error) {
       console.log(error);
     }
-  }
-}
+  };
+};
+
+export const getTypes = () => {
+  return async (dispatch) => {
+    let info = await axios.get("http://localhost:3001/types", {});
+    return dispatch({ type: "GET_TYPES", payload: info.data });
+  };
+};
 
 export const filterCreated = (payload) => {
   return {

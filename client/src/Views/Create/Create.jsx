@@ -1,21 +1,29 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createPokemons } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { createPokemons, getTypes } from "../../redux/actions";
 //import "./Create.css";
-import style from './Create.module.css'
+import style from "./Create.module.css";
+import { useEffect } from "react";
 
 const Create = () => {
+  const dispatch = useDispatch();
+  const types = useSelector((state) => state.types);
+
   const [input, setInput] = useState({
     name: "",
     image: "",
     hp: "",
     attack: "",
     defense: "",
-    speed: '',
+    speed: "",
     height: 0,
     weight: 0,
-    types: '',
+    types: []
   });
+
+  useEffect(() => {
+    dispatch(getTypes());
+  }, []);
 
   const [errors, setErrors] = useState({
     name: "Nombre es requerido",
@@ -26,10 +34,8 @@ const Create = () => {
     speed: "",
     height: "",
     weight: "",
-    types: '',
+    types: []
   });
-
-  const dispatch=useDispatch();
 
   const disable = () => {
     let disabled = true;
@@ -90,6 +96,13 @@ const Create = () => {
     );
   };
 
+  const handleSelect=(e) => {
+    setInput({
+      ...input,
+      types: [...input.types, e.target.value]
+    })
+  }
+
   return (
     <div className={style.formContainer}>
       <form className={style.form} onSubmit={handleSubmit}>
@@ -132,9 +145,14 @@ const Create = () => {
           <input name="weight" type="text" onChange={handleChange} />
         </div>
         <div>
-            <label>Tipo:</label>
-            <input name="types" type="text" onChange={handleChange} />
-          </div>
+          <label>Tipo:</label>
+          <select onChange={(e) => handleSelect(e)}>
+            {types.map((t) => (
+              <option value={t.name}>{t.name}</option>
+            ))}
+          </select>
+          <ul><li>{input.types.map(e => e + ' ,')}</li></ul>
+        </div>
         <input disabled={disable()} type="submit" name="submit" />
       </form>
     </div>

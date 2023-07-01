@@ -1,8 +1,9 @@
-import { GET_POKEMONS, CREATE_POKEMONS, FILTER_CREATED, ORDER_BY_NAME, GET_NAME_POKEMONS } from "./actions";
+import { GET_POKEMONS, CREATE_POKEMONS, FILTER_CREATED, ORDER_BY_NAME, GET_NAME_POKEMONS, GET_TYPES } from "./actions";
 
 let initialState = {
   pokemons: [],
-  allPokemons: []
+  allPokemons: [],
+  types:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -14,7 +15,6 @@ const rootReducer = (state = initialState, action) => {
         allPokemons:action.payload
       };
     case GET_NAME_POKEMONS:
-      //console.log('estoy en el payload', action.payload);
       return {
         ...state,
         pokemons: action.payload
@@ -23,7 +23,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         type: action.payload,
-      };
+      }
+    case GET_TYPES:
+      return {
+        ...state,
+        types: action.payload
+      }
     case FILTER_CREATED:
       //const allPokemonsFiltered = state.allPokemons
       const createdFilter =

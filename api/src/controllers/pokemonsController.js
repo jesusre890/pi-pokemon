@@ -63,7 +63,7 @@ const getPokemonsDb = async () => {
       id: e.id,
       name: e.name,
       image: e.image,
-      types: e.Types,
+      types: e.Types.map((e) => e.name),
       hp: e.hp,
       attack: e.attack,
       defense: e.defense,
@@ -77,7 +77,7 @@ const getPokemonsDb = async () => {
 };
 
 const getAllPokemons=async (name) => {
-  console.log('estoy en el controller', name);
+  //console.log('estoy en el controller', name);
   const pokemonsDb = await getPokemonsDb();
   //console.log(getPokemonsDb);
   const pokemonsApi = await getPokemonsApi();
@@ -140,12 +140,6 @@ const createPokemon = async (
 
   pokemon.addTypes(typesDb);
 
-  //const poke = await Pokemon.findOne({
-  //  where: { name },
-  //  include: { model: Type, attributes: ["name"] },
-  //});
-  //console.log(poke.Types);
-
   return pokemon;
 };
 
@@ -157,14 +151,4 @@ module.exports = {
   createPokemon,
 };
 
-//const getPokemonsById = async (idPokemon) => {
-//  const source = isNaN(idPokemon) ? "bd" : "api";
-//  if (source === "api") {
-//    const pokemon = await axios.get(
-//      `https://pokeapi.co/api/v2/pokemon/${idPokemon}`
-//    );
-//    return pokemon.data;
-//  }
-//  const pokemon = await Pokemon.findByPk(idPokemon);
-//  return pokemon;
-//};
+

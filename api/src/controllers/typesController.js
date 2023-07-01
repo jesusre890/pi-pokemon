@@ -19,3 +19,4 @@ const getTypesApi = async () => {
 module.exports = {
   getTypesApi
 };
+
