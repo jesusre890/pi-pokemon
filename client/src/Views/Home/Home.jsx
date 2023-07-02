@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // install react-redux
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons, filterCreated, orderByName } from "../../redux/actions";
+import { getPokemons, filterCreated, orderByName, orderByAttack, orderByType } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
 // componentes
@@ -11,7 +11,8 @@ import SearchBar from "../../Components/SearchBar/SearchBar";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const allPokemons = useSelector((state) => state.pokemons);
+  const allPokemons=useSelector((state) => state.pokemons);
+  const allTypes= useSelector((state) => state.types)
   const [orden, setOrden] = useState("");
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,6 +48,19 @@ const Home = () => {
     dispatch(filterCreated(e.target.value));
   };
 
+  const handleSortAttack=(e) => {
+    e.preventDefault()
+    dispatch(orderByAttack(e.target.value))
+    setCurrentPage(1)
+    setOrden(`Ordenado ${e.target.value}`);
+  }
+
+  const handleFilterTypes=(e) => {
+    if(e.target.value!=='tipos') {
+      dispatch(orderByType(e.target.value))
+    }
+  }
+
   return (
     <div className={style.homeContainer}>
       <button
@@ -56,13 +70,23 @@ const Home = () => {
       >
         Recargar
       </button>
-      <SearchBar/>
+      <SearchBar />
       <div>
         <select onChange={(e) => handleSort(e)}>
           <option value="asc">A - Z</option>
           <option value="des">Z - A</option>
         </select>
-        <select>
+        <select onChange={(e) => handleFilterTypes(e)}>
+          <option value="tipos">Tipos</option>
+          {allTypes?.map((e, index) => {
+            return (
+              <option key={index} value={e.name}>
+                {e.name}
+              </option>
+            );
+          })}
+        </select>
+        <select onChange={(e) => handleSortAttack(e)}>
           <option value="attack">Ataques</option>
           <option value="min">min</option>
           <option value="max">max</option>
@@ -87,7 +111,7 @@ const Home = () => {
                 hp={e.hp}
                 image={e.image}
                 id={e.id}
-                types={e.types}
+                types={` ${e.types}`}
                 key={index}
               />
             </Link>

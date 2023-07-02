@@ -5,8 +5,10 @@ export const GET_POKEMONS = "GET_POKEMONS";
 export const CREATE_POKEMONS = "CREATE_POKEMONS";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
-export const GET_NAME_POKEMONS="GET_NAME_POKEMONS";
+export const GET_NAME_POKEMONS = "GET_NAME_POKEMONS";
 export const GET_TYPES = "GET_TYPES";
+export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
+export const ORDER_BY_TYPE = 'ORDER_BY_TYPE'
 
 //ACTIONS
 export const getPokemons = () => {
@@ -29,7 +31,7 @@ export const createPokemons = (info) => {
         info
       );
       console.log(response);
-      alert("Pokemon creado");
+      alert("Pokemon creado, Gran trabajo!");
     } catch (error) {
       console.error(error);
       alert(error.response.data.error);
@@ -74,3 +76,17 @@ export const orderByName = (payload) => {
     payload,
   };
 };
+
+export const orderByAttack = (payload) => {
+  return {
+    type: "ORDER_BY_ATTACK",
+    payload,
+  };
+};
+
+export const orderByType=(payload) => {
+  return {
+    type: 'ORDER_BY_TYPE',
+    payload
+  }
+} 
