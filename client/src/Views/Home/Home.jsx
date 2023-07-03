@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // install react-redux
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons, filterCreated, orderByName, orderByAttack, orderByType } from "../../redux/actions";
+import { getPokemons, filterCreated, getTypes, orderByName, orderByAttack, orderByType } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
 // componentes
@@ -13,6 +13,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const allPokemons=useSelector((state) => state.pokemons);
   const allTypes= useSelector((state) => state.types)
+  //console.log(allTypes);
   const [orden, setOrden] = useState("");
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +31,8 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getPokemons());
-  }, [dispatch]);
+    dispatch(getTypes())
+  },[dispatch]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -44,7 +46,8 @@ const Home = () => {
     setOrden(`Ordenado ${e.target.value}`); //modifica el estado local para hacer el ordenamiento
   };
 
-  const handleFilterCreated = (e) => {
+  const handleFilterCreated=(e) => {
+    e.preventDefault()
     dispatch(filterCreated(e.target.value));
   };
 
@@ -56,7 +59,8 @@ const Home = () => {
   }
 
   const handleFilterTypes=(e) => {
-    if(e.target.value!=='tipos') {
+    e.preventDefault()
+    if(e.target.value!=='Tipos') {
       dispatch(orderByType(e.target.value))
     }
   }
@@ -77,11 +81,12 @@ const Home = () => {
           <option value="des">Z - A</option>
         </select>
         <select onChange={(e) => handleFilterTypes(e)}>
-          <option value="tipos">Tipos</option>
-          {allTypes?.map((e, index) => {
+          <option>Tipos</option>
+          <option value="All">Todos</option>
+          {allTypes?.map((e) => {
             return (
-              <option key={index} value={e.name}>
-                {e.name}
+              <option key={e.id} value={e.name}>
+                {e.name} 
               </option>
             );
           })}
@@ -101,17 +106,18 @@ const Home = () => {
         pokemonsPerPage={pokemonsPerPage}
         allPokemons={allPokemons.length}
         pagination={pagination}
+        //page={currentPage}
       />
       <div className={style.linkCard}>
         {currentPokemons?.map((e, index) => {
           return (
-            <Link key={index} className={style.card} to={"/detail" + e.id}>
+            <Link key={index} className={style.card} to={`/detail/${e.id}`}>
               <Card
                 name={e.name}
                 hp={e.hp}
                 image={e.image}
                 id={e.id}
-                types={` ${e.types}`}
+                types={e.types}
                 key={index}
               />
             </Link>

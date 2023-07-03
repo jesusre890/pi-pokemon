@@ -5,13 +5,13 @@ const Card = ({ image, name, types, hp, id }) => {
   return (
     <div className={style.cardContainer} key={id}>
       <div className={style.cardTitle}>
-        <h3>{name}</h3>
-        <h4>Hp: {hp}</h4>
+        <h2 className={style.nameCard}>{name}</h2>
+        <h5 className={style.hp}>Hp: {hp}</h5>
       </div>
       <div className={style.cardInfo}>
         <img src={image} alt={name} />
-      <div className={style.cardInfo}>
-          <h5>{types}</h5>
+        <div className={style.cardInfo}>
+          {types.map((e) => <p>{e}</p>)}
       </div>
       </div>
     </div>

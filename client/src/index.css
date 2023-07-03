@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url('./img-pk/container_bg.png');
-  background-color: rgb(91, 91, 91);
+  background-color: rgb(160, 160, 160);
 }
 
 code {

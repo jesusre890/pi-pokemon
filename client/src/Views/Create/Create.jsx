@@ -26,30 +26,8 @@ const Create = () => {
   }, []);
 
   const [errors, setErrors] = useState({
-    //name: "",
-    //image: "",
-    //hp: "",
-    //attack: "",
-    //defense: "",
-    //types: "",
-    //speed: "",
-    //height: "",
-    //weight: "",
-    //types: [],
-  });
 
-  //const [errors, setErrors] = useState({
-  //  name: "",
-  //  image: "",
-  //  hp: "",
-  //  attack: "",
-  //  defense: "",
-  //  types: "",
-  //  //speed: "",
-  //  //height: "",
-  //  //weight: "",
-  //  //types: [],
-  //});
+  });
 
   const disable = () => {
     let disabled = true;
@@ -64,25 +42,6 @@ const Create = () => {
     }
     return disabled;
   };
-
-  //const handleSubmit = (e) => {
-  //  e.preventDefault();
-  //  //console.log(input);
-  //  setInput({ ...input, types: input.types.push(...selectTypes) });
-  //  dispatch(createPokemons(input));
-  //  setInput({
-  //    name: "",
-  //    image: "",
-  //    hp: "",
-  //    attack: "",
-  //    defense: "",
-  //    speed: "",
-  //    height: "",
-  //    weight: "",
-  //    types: [],
-  //  });
-  //  setSelectTypes([]);
-  //};
 
   const handleSubmit = (e) => {
     e.preventDefault();

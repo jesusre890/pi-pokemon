@@ -7,12 +7,15 @@ import {
   ORDER_BY_TYPE,
   GET_NAME_POKEMONS,
   GET_TYPES,
+  GET_DETAIL,
+  CLEAR_DETAIL
 } from "./actions";
 
 let initialState = {
   pokemons: [],
   allPokemons: [],
   types: [],
+  detail: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -100,19 +103,30 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case ORDER_BY_TYPE:
-      let orderType;
-      if (action.payload === "tipos") {
+      let orderType
+      if (action.payload === "All") {
         orderType = state.allPokemons;
       } else {
-        orderType = state.pokemons.filter((e) =>
+        orderType = state.allPokemons.filter((e) =>
           e.types.includes(action.payload)
         );
       }
+      //console.log(state.pokemons)
       return {
         ...state,
-        allPokemons: orderType,
+        pokemons: orderType,
       };
-    
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: action.payload
+      }
+    case CLEAR_DETAIL:
+      return {
+        ...state,
+        detail: {}
+      }
+
     default:
       return { ...state };
   }

@@ -1,25 +1,10 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
 
-//Obtiene un arreglo de objetos, donde cada objeto es un pokemon con su información.
-
-//const getPokemons = async (name) => {
-//  try {
-//    if (name) {
-//      //trae el primero que encuentre en la base de datos
-//      const pokemonByName = await Pokemon.findOne({ where: { name } });
-//      return pokemonByName;
-//    }
-//    const allPokemon = await Pokemon.findAll();
-//    return allPokemon;
-//  } catch (error) {
-//    throw new Error(error.message);
-//  }
-//};
 
 const getPokemonsApi = async () => {
   try {
-    const api = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=48");
+    const api = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=200");
 
     const pokeApi = await api.data.results; //guardo la info en una constante para luego mapear y modificar segun la info de la url
 
@@ -40,7 +25,7 @@ const getPokemonsApi = async () => {
         //createPokemon: false
       };
     });
-
+    
     const getAllPokemon = await Promise.all(dataPokemon);
     return getAllPokemon;
   } catch (error) {

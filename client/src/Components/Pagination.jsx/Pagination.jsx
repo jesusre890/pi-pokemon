@@ -8,7 +8,7 @@ export default function Pagination({
 }) {
   const pageNumbers = [];
 
-  for (let i = 0; i <= Math.ceil(allPokemons / pokemonsPerPage); i++) {
+  for (let i = 0; i < Math.ceil(allPokemons / pokemonsPerPage); i++) {
     pageNumbers.push(i+1);
   }
 

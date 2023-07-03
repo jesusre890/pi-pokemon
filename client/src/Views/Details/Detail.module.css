@@ -1,0 +1,135 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.bodyDetail {
+  display: flex;
+  justify-content: center;
+}
+
+.containerDetail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(255, 255, 255);
+  width: 700px;
+  height: 400px;
+  margin: 6%;
+  border-radius: 20px;
+}
+
+.backgroundDetail {
+  text-align: center;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    166deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(147, 147, 147, 1) 100%
+  );
+  box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #e6e6e6;
+}
+
+.imageDetail {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 70px;
+}
+
+.containerLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mime {
+  margin-top: 350px;
+  width: 100px;
+  height: 100px;
+}
+
+.contentDetail {
+  height: 100%;
+  background: rgb(113, 113, 113);
+  padding: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.contentDetail {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.pokemonStats {
+  text-align: start;
+}
+
+span {
+  font-weight: 500;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.pokemonNameDetail {
+  text-align: center;
+  font-size: x-large;
+  font-weight: bolder;
+  padding: 10px;
+  color: rgb(18, 16, 46);
+}
+
+.pokemonType {
+  background: rgb(42, 42, 42);
+  padding: 7px;
+  margin-top: 15px;
+  color: whitesmoke;
+  border-radius: 5px;
+  width: 200px;
+  display: block;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.pokemonStats {
+  letter-spacing: 1px;
+  padding-top: 60px;
+}
