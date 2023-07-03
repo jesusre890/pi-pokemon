@@ -9,6 +9,17 @@
   justify-content: center;
 }
 
+.imageGif {
+  display: flex;
+  justify-content: end;
+}
+
+.imageGif img {
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+}
+
 .containerDetail {
   display: flex;
   flex-direction: row;
@@ -35,7 +46,7 @@
     rgba(255, 255, 255, 1) 0%,
     rgba(147, 147, 147, 1) 100%
   );
-  box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #e6e6e6;
+  /*box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #e6e6e6;*/
 }
 
 .imageDetail {
@@ -59,47 +70,56 @@
 
 .contentDetail {
   height: 100%;
-  background: rgb(113, 113, 113);
+  background: whitesmoke;
   padding: 10px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
 
-.contentDetail {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
+
 
 .pokemonStats {
   text-align: start;
+  margin-top: -45px;
+}
+
+.pokemonStats p {
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  -webkit-animation: scale-up-hor-left 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-hor-left 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@-webkit-keyframes scale-up-hor-left {
+  0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+}
+@keyframes scale-up-hor-left {
+  0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
 }
 
 span {
@@ -117,7 +137,7 @@ span {
 }
 
 .pokemonType {
-  background: rgb(42, 42, 42);
+  /*background: rgb(197, 24, 24);*/
   padding: 7px;
   margin-top: 15px;
   color: whitesmoke;
