@@ -1,48 +1,153 @@
-.formContainer {
-  background-size: 20px 20px;
-  background-position: 0 0, 10px, 10px;
-  /*display: flex;*/
-  min-height: 100vh;
-  /*position: relative;*/
+.containerF {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.form {
-  background-color: rgb(171, 169, 169);
-  margin: auto;
-  width: 70%;
-  max-width: 500px;
-  padding: 4, 5em 3em;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px -5px rgb(0 0 0 /30%);
+.formContainer {
+  background-color: #fff;
+  display: block;
+  padding: 1rem;
+  max-width: 350px;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .formTitle {
-  font-size: 2rem;
-  margin-bottom: 0.5em;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
 }
 
-.formGroup {
-  margin-top: 3em;
-  display: grid;
-  gap: 2.5em;
+.inputContainer {
+  position: relative;
 }
 
-/*.form-group input{
-    width: 80%;
-    background-color: none;
-    color: azure;
-    font-size: 1rem;
-    padding: .6em .3em;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid var(--color);
+.inputContainer input,
+.form button {
+  outline: none;
+  border: 1px solid #e5e7eb;
+  margin: 8px 0;
 }
 
-.form-group label{
-    color: var(--color);
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 5px;
-    transform: translateY(10px);
-}*/
+.inputContainer input {
+  background-color: #fff;
+  /*padding: 1rem;
+  padding-right: 3rem;*/
+  height: 30px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.selectType {
+  width: 100px;
+  height: 30px;
+  border: 3px solid #315cfd;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 0.9em;
+  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
+  margin-left: 20px;
+  padding-left: 15px;
+}
+
+.spanError {
+  font-size: 0.9em;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+}
+
+.typeElegido {
+  padding: 0.2em 0.7em;
+  background-color:#2743a8;
+  border-radius: 0.3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 400;
+  font-size: 13px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+}
+
+.typeS {
+  font-size: 0.9em;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+}
+
+.selectType:hover {
+  background: #315cfd;
+  color: white;
+  font-size: 1em;
+}
+
+.buttonCrear {
+  --color: #315cfd;
+  padding: 0.8em 1.7em;
+  background-color: transparent;
+  border-radius: 0.3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 400;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+  /*height: 30px;*/
+}
+
+.buttonCrear::before,
+.buttonCrear::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: var(--color);
+  transition: 1s ease;
+}
+
+.buttonCrear::before {
+  top: -1em;
+  left: -1em;
+}
+
+.buttonCrear::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+}
+
+.buttonCrear:hover::before,
+.buttonCrear:hover::after {
+  height: 410px;
+  width: 410px;
+}
+
+.buttonCrear:hover {
+  color: rgb(10, 25, 30);
+}
+
+.buttonCrear:active {
+  filter: brightness(0.8);
+}

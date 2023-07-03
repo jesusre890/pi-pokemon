@@ -1,5 +1,5 @@
 import React from "react";
-import style from './Card.module.css'
+import style from "./Card.module.css";
 
 const Card = ({ image, name, types, hp, id }) => {
   return (
@@ -11,8 +11,10 @@ const Card = ({ image, name, types, hp, id }) => {
       <div className={style.cardInfo}>
         <img src={image} alt={name} />
         <div className={style.cardInfo}>
-          {types.map((e) => <p>{e}</p>)}
-      </div>
+          {types.map((e, index) => (
+            <p key={index}>{e}</p>
+          ))}
+        </div>
       </div>
     </div>
   );

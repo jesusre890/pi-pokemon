@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "../../img-pk/pokeballLogo.png";
-import style from './Navbar.module.css'
+import style from "./Navbar.module.css";
 import { Link } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Navbar = () => {
   return (
@@ -19,6 +20,7 @@ const Navbar = () => {
           Crear
         </Link>
       </div>
+        <SearchBar />
     </div>
   );
 };

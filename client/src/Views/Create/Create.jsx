@@ -16,8 +16,8 @@ const Create = () => {
     attack: "",
     defense: "",
     speed: "",
-    height: 0,
-    weight: 0,
+    height: "",
+    weight: "",
     types: [],
   });
 
@@ -25,9 +25,7 @@ const Create = () => {
     dispatch(getTypes());
   }, []);
 
-  const [errors, setErrors] = useState({
-
-  });
+  const [errors, setErrors] = useState({});
 
   const disable = () => {
     let disabled = true;
@@ -54,13 +52,13 @@ const Create = () => {
       attack: "",
       defense: "",
       speed: "",
-      height: '',
-      weight: '',
+      height: "",
+      weight: "",
       types: [],
     });
   };
 
-  const handleChange=(e) => {
+  const handleChange = (e) => {
     e.preventDefault();
     setInput({
       ...input, //copia el estado como ya existe
@@ -75,8 +73,8 @@ const Create = () => {
     //console.log(input);
   };
 
-  const handleSelect=(e) => {
-    e.preventDefault()
+  const handleSelect = (e) => {
+    e.preventDefault();
     setInput({
       ...input,
       types: [...input.types, e.target.value],
@@ -97,124 +95,218 @@ const Create = () => {
   };
 
   return (
-    <div className={style.formContainer}>
-      <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
-        <h3 className={style.formTitle}>Crea un pokemon</h3>
+    <div className={style.containerF}>
+      <div className={style.formContainer}>
+        <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
+          <h3 className={style.formTitle}>Crea un pokemon</h3>
+          <div>
+            <div className={style.inputContainer}>
+              {/*<label>Nombre:</label>*/}
+              <input
+                placeholder="Nombre"
+                name="name"
+                type="text"
+                value={input.name}
+                onChange={handleChange}
+              />
+              <div>
+                {errors.name && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.name}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.inputContainer}>
+              <input
+                placeholder="Imagen"
+                name="image"
+                type="text"
+                value={input.image}
+                onChange={handleChange}
+              />
+              <div>
+                {errors.image && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.image}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.inputContainer}>
+              <input
+                placeholder="HP"
+                name="hp"
+                type="text"
+                value={input.hp}
+                onChange={handleChange}
+              />
+              <div>
+                {errors.hp && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.hp}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.inputContainer}>
+              <input
+                placeholder="Ataque"
+                name="attack"
+                type="text"
+                value={input.attack}
+                onChange={handleChange}
+              />
+              <div>
+                {errors.attack && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.attack}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.inputContainer}>
+              <input
+                placeholder="Defensa"
+                name="defense"
+                type="text"
+                value={input.defense}
+                onChange={handleChange}
+              />
+              <div>
+                {errors.defense && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.defense}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.inputContainer}>
+              <input
+                placeholder="Velocidad"
+                name="speed"
+                type="text"
+                value={input.speed}
+                onChange={handleChange}
+              />
+              <div>
+                {errors.speed && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.speed}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.inputContainer}>
+              <input
+                placeholder="Altura"
+                name="height"
+                type="text"
+                value={input.height}
+                onChange={handleChange}
+              />
+              <div>
+                {errors.height && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.height}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.inputContainer}>
+              <input
+                placeholder="Peso"
+                name="weight"
+                type="text"
+                value={input.weight}
+                onChange={handleChange}
+              />
+              <div>
+                {errors.weight && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.weight}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.inputContainer}>
+              <label className={style.typeS}>Tipo:</label>
+              <select
+                onChange={(e) => handleSelect(e)}
+                className={style.selectType}
+              >
+                {types.map((t, index) => (
+                  <option key={index} value={t.name}>
+                    {t.name}
+                  </option>
+                ))}
+              </select>
+              <div>
+                {errors.types && (
+                  <span
+                    className={style.spanError}
+                    style={{ color: "#e74c3c" }}
+                  >
+                    {errors.types}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className={style.crearP}>
+              <button
+                className={style.buttonCrear}
+                type="submit"
+                name="submit"
+                disabled={disable()}
+              >
+                Crear
+              </button>
+            </div>
+          </div>
+        </form>
         <div>
-          <label>Nombre:</label>
-          <input
-            name="name"
-            type="text"
-            value={input.name}
-            onChange={handleChange}
-          />
-          {errors.name && <span>{errors.name}</span>}
+          {input.types.map((e, index) => (
+            <div className={style.divDelete}>
+              <p className={style.typeElegido} style={{ color: "white" }}>
+                {e}
+              </p>
+              <button
+                key={index}
+                className={style.botonX}
+                onClick={() => handleDelete(e)}
+              >
+                X
+              </button>
+            </div>
+          ))}
         </div>
-        <div>
-          <label>Imagen:</label>
-          <input
-            name="image"
-            type="text"
-            value={input.image}
-            onChange={handleChange}
-          />
-          {errors.image && <span>{errors.image}</span>}
-        </div>
-        <div>
-          <label>HP:</label>
-          <input
-            name="hp"
-            type="text"
-            value={input.hp}
-            onChange={handleChange}
-          />
-          {errors.hp && <span>{errors.hp}</span>}
-        </div>
-        <div>
-          <label>Ataque:</label>
-          <input
-            name="attack"
-            type="text"
-            value={input.attack}
-            onChange={handleChange}
-          />
-          {errors.attack && <span>{errors.attack}</span>}
-        </div>
-        <div>
-          <label>Defensa:</label>
-          <input
-            name="defense"
-            type="text"
-            value={input.defense}
-            onChange={handleChange}
-          />
-          {errors.defense && <span>{errors.defense}</span>}
-        </div>
-        <div>
-          <label>Velocidad:</label>
-          <input
-            name="speed"
-            type="text"
-            value={input.speed}
-            onChange={handleChange}
-          />
-          {errors.speed && <span>{errors.speed}</span>}
-        </div>
-        <div>
-          <label>Altura:</label>
-          <input
-            name="height"
-            type="text"
-            value={input.height}
-            onChange={handleChange}
-          />
-          {errors.height && <span>{errors.height}</span>}
-        </div>
-        <div>
-          <label>Peso:</label>
-          <input
-            name="weight"
-            type="text"
-            value={input.weight}
-            onChange={handleChange}
-          />
-          {errors.weight && <span>{errors.weight}</span>}
-        </div>
-        <div>
-          <label>Tipo:</label>
-          <select onChange={(e) => handleSelect(e)}>
-            {types.map((t, index) => (
-              <option key={index} value={t.name}>
-                {t.name}
-              </option>
-            ))}
-          </select>
-          {errors.types && <span>{errors.types}</span>}
-        </div>
-        <button type="submit" name="submit" disabled={disable()}>
-          Crear
-        </button>
-      </form>
-      {input.types.map((e, index) => (
-        <div className={style.divDelete}>
-          <p>{e}</p>
-          <button
-            key={index}
-            className={style.botonX}
-            onClick={() => handleDelete(e)}
-          >
-            X
-          </button>
-        </div>
-      ))}
+      </div>
     </div>
   );
 };
 
 export default Create;
-
-//disabled={disable()}
-
-//{/*<ul>
-//  <li>{input.types.map((e) => e + " ,")}</li>
-//</ul>*/}

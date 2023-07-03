@@ -37,8 +37,6 @@ const Detail = () => {
     return () => dispatch(clearDetail());
   }, [dispatch, id]);
   
-  const types=useSelector(state => state.types)
-  //console.log(types[0]);
   const detailPokemons=useSelector((state) => state.detail);
   //console.log(detailPokemons[0]?.types[0]);
 

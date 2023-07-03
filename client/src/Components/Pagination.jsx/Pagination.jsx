@@ -4,7 +4,8 @@ import style from './Pagination.module.css'
 export default function Pagination({
   pokemonsPerPage,
   allPokemons,
-  pagination
+  pagination,
+  page
 }) {
   const pageNumbers = [];
 
@@ -17,12 +18,27 @@ export default function Pagination({
       <ul className={style.pagination}>
         {pageNumbers &&
           pageNumbers.map((number, index) => (
-            <li className={style.listPage} key={index}>
-              <a onClick={() => pagination(number)}>{number}</a>
-              <a href=""></a>
+            <li
+              //className={style.listPage}
+              key={index}
+              style={{ listStyle: "none" }}
+            >
+              <button
+                className={style.buttonP}
+                style={
+                  page === number
+                    ? { color: 'white' , background: "darkgrey" }
+                    : {}
+                }
+                onClick={() => pagination(number)}
+              >
+                {number}
+              </button>
             </li>
           ))}
       </ul>
     </nav>
   );
 }
+
+//<a onClick={() => pagination(number)}>{number}</a>
