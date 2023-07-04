@@ -15,6 +15,7 @@ import style from "./Home.module.css";
 import Card from "../../Components/Card/Card";
 import Pagination from "../../Components/Pagination.jsx/Pagination";
 import Navbar from "../../Components/Navbar/Navbar";
+import loading from "../../img-pk/gifsPokes/Mr.-Rime-Pokemon-PNG.gif";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -139,20 +140,27 @@ const Home = () => {
         page={currentPage}
       />
       <div className={style.linkCard}>
-        {currentPokemons?.map((e, index) => {
-          return (
-            <Link key={index} className={style.card} to={`/detail/${e.id}`}>
-              <Card
-                name={e.name}
-                hp={e.hp}
-                image={e.image}
-                id={e.id}
-                types={e.types}
-                key={index}
-              />
-            </Link>
-          );
-        })}
+        {currentPokemons.length ? (
+          currentPokemons?.map((e, index) => {
+            return (
+              <Link key={index} className={style.card} to={`/detail/${e.id}`}>
+                <Card
+                  name={e.name}
+                  hp={e.hp}
+                  image={e.image}
+                  id={e.id}
+                  types={e.types}
+                  key={index}
+                />
+              </Link>
+            );
+          })
+        ) : (
+          <div className={style.containerLoading}>
+            <img className={style.mime} src={loading} alt="Mr.Mime cargando" />
+            <p className={style.loading}>cargando...</p>
+          </div>
+        )}
       </div>
     </div>
   );

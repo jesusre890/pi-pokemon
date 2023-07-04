@@ -88,14 +88,16 @@ const validate = (input) => {
   }
 
   if (input.types.length <= 0) errors.types = "Debes elegir al menos 2 tipos";
-  else if (input.types.length > 2) errors.types = "Debes elegir al menos 2 tipos";
-  if(input.types.length > 0 && input.types.length < 3) errors.types=[];
+  if(input.types.length>2) errors.types="No puedes elegir mas de 2 tipos";
   
-  //if (input.types.length === 1 || input.types.length === 2) errors.types = [];
-    //si es correcto limpia los errores
+  if(!errors.types) {
+    if (input.types.length > 0 && input.types.length < 3) errors.types = [];
+  }
 
-    return errors;
+  //if (input.types.length === 1 || input.types.length === 2) errors.types = [];
+  //si es correcto limpia los errores
+
+  return errors;
 };
 
 export default validate;
-

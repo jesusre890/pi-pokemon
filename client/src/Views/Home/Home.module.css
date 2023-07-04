@@ -9,7 +9,7 @@
 
 .card{
     text-decoration: none;
-    color: rgb(45, 85, 55);
+    color: rgb(24, 54, 32);
 }
 
 .containerButton{
@@ -147,4 +147,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.containerLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mime {
+  margin-top: 350px;
+  width: 100px;
+  height: 100px;
 }

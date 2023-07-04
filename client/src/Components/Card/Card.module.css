@@ -1,32 +1,48 @@
-.cardContainer{
-    background-color: whitesmoke;
-    width: 15rem;
-    margin: 15px;
-    height: 20rem;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 15%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center
+.cardContainer {
+  background-color: whitesmoke;
+  width: 15rem;
+  margin: 15px;
+  height: 20rem;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 15%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 10px 20px 30px,
+    rgba(0, 0, 0, 0.3) 10px 1px 53px 3px, rgba(1, 0, 0, 0.2) 0px -1px 3px inset;
+  cursor: pointer;
+  transition: all 0.5s;
+  user-select: none;
+  font-weight: bolder;
+  /*color: #fff;*/
 }
 
-.nameCard{
-    font-size:larger;
-    text-transform: capitalize;
+.cardContainer:hover {
+  transform: scale(1.021);
+  background-color: whitesmoke;
+  background: #9a9a9a;
 }
 
-.cardInfo{
-    display: flex;
-    flex-direction: column;
-    font-size:medium;
-    font-weight: 500;
-    text-transform: capitalize;
+.cardContainer:active {
+  transform: scale(0.95) rotateZ(1.1deg);
 }
 
+.nameCard {
+  font-size: larger;
+  text-transform: capitalize;
+}
 
-.cardContainer img{
-    width:130px;
-    padding: 25px 0 25px 0;
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  font-size: medium;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.cardContainer img {
+  width: 130px;
+  padding: 25px 0 25px 0;
 }

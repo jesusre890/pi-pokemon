@@ -1,7 +1,7 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .imagenes {
@@ -19,9 +19,77 @@
 }
 /* Estilo para la imagen superior */
 .hooh {
-    width: 100px;
-    margin-top: -250px;
-    margin-right: -250px;
+  width: 100px;
+  margin-top: -250px;
+  margin-right: -250px;
   position: absolute;
   z-index: 2;
+  text-decoration: none;
+}
+
+.atrapaButton {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0.8em 1.3em 0.8em 0.9em;
+  color: white;
+  width: 200px;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  opacity: 30%;
+  border: none;
+  letter-spacing: 0.05em;
+  border-radius: 16px;
+  margin-top: -150px;
+}
+
+.atrapaButton svg {
+  margin-right: 10px;
+  transform: rotate(30deg);
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.atrapaButton span {
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.atrapaButton:hover svg {
+  transform: translateX(5px) rotate(90deg);
+}
+
+.atrapaButton:hover span {
+  transform: translateX(7px);
+}
+
+.buttonVolver {
+  display: flex;
+  height: 3em;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee4b;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+}
+
+.buttonVolver > svg {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: all 0.4s ease-in;
+}
+
+.buttonVolver:hover > svg {
+  font-size: 1.2em;
+  transform: translateX(-5px);
+}
+
+.buttonVolver:hover {
+  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+  transform: translateY(-2px);
 }

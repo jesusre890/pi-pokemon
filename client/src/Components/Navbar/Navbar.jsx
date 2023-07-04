@@ -7,7 +7,7 @@ import SearchBar from "../SearchBar/SearchBar";
 const Navbar = () => {
   return (
     <div className={style.navContainer}>
-      <Link to={"/home"}>
+      <Link to={"/"}>
         <div className={style.imgContainer}>
           <img src={logo} alt="logoPokeball" />
         </div>

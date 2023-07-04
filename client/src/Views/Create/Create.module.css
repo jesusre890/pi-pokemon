@@ -1,7 +1,7 @@
 .containerF {
   display: flex;
   justify-content:space-evenly;
-  margin-top: 20px;
+  margin-top: 60px;
 }
 
 .formContainer {
@@ -89,6 +89,10 @@
   z-index: 1;
   border-radius: 30px;
   width: 100px;
+}
+
+.guiaP{
+  text-align: left;
 }
 
 .botonX {
@@ -179,4 +183,95 @@
   filter: brightness(0.8);
 }
 
+.buttonVolver {
+ display: flex;
+ height: 3em;
+ width: 100px;
+ align-items: center;
+ justify-content: center;
+ background-color: #eeeeee4b;
+ border-radius: 3px;
+ letter-spacing: 1px;
+ transition: all 0.2s linear;
+ cursor: pointer;
+ border: none;
+ background: #fff;
+ margin-top: 50px;
+ display: flex;
+ align-items: center;
+}
 
+.spanV{
+  margin-bottom: -8.5px;
+}
+
+.buttonVolver > svg {
+ margin-right: 5px;
+ margin-left: 5px;
+ font-size: 20px;
+ transition: all 0.4s ease-in;
+}
+
+.buttonVolver:hover > svg {
+ font-size: 1.2em;
+ transform: translateX(-5px);
+}
+
+.buttonVolver:hover {
+ box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+ transform: translateY(-2px);
+}
+
+.spanBo{
+  text-decoration: none;
+}
+
+.containerGuia{
+  margin-top: 50px;
+  background-color: whitesmoke;
+  border-radius: 30px;
+  padding: 20px;
+}
+
+.containerGuia p {
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  -webkit-animation: scale-up-hor-left 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-hor-left 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@-webkit-keyframes scale-up-hor-left {
+  0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+}
+@keyframes scale-up-hor-left {
+  0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+}
+
+.linkParaCrear{
+  color:darkorange;
+}
