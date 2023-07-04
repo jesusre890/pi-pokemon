@@ -6,9 +6,9 @@
 }
 
 .imgContainer img {
-  width: 3rem;
-  margin: 10px;
-  margin-left: 40px;
+  width: 12rem;
+
+  margin-left: -40px;
 }
 
 .linkContainer{

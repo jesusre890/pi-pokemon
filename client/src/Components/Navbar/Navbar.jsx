@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../img-pk/pokeballLogo.png";
+import logo from "../../img-pk/gifsPokes/pokeballGif.gif";
 import style from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";

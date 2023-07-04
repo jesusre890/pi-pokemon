@@ -175,7 +175,7 @@ const Detail = () => {
                   {detailPokemons[0]?.weight}
                 </p>
                 <div className={style.imageGif}>
-                  <img src={typesGift[detailPokemons[0]?.types[0]]} alt="" />
+                  <img src={typesGift[detailPokemons[0]?.types[0]]} alt="tipo" />
                 </div>
               </div>
             </div>

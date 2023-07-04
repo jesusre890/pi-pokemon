@@ -27,6 +27,18 @@ const validate = (input) => {
     errors.defense = "No puede estar vacio";
   }
 
+  //if (input.speed === "") {
+  //  errors.speed = "No puede estar vacio";
+  //}
+
+  //if (input.height === "") {
+  //  errors.height = "No puede estar vacio";
+  //}
+
+  //if (input.weight === "") {
+  //  errors.weight = "No puede estar vacio";
+  //}
+
   if (input.hp <= 0) {
     errors.hp = "No puede ser menor a 0";
   }
@@ -51,8 +63,32 @@ const validate = (input) => {
     errors.weight = "No puede ser menor a 0";
   }
 
-  if (input.types.length <= 0) errors.types = "Debes elegir al menos un tipo";
-  else if (input.types.length > 2) errors.types = "No puede elegir mas de dos tipos";
+  if (!/^([0-9])*$/.test(input.weight) && input.weight) {
+    errors.weight = "Solo se permiten numeros";
+  }
+
+  if (!/^([0-9])*$/.test(input.height) && input.height) {
+    errors.height = "Solo se permiten numeros";
+  }
+
+  if (!/^([0-9])*$/.test(input.hp)) {
+    errors.hp = "Solo se permiten numeros";
+  }
+
+  if (!/^([0-9])*$/.test(input.attack)) {
+    errors.attack = "Solo se permiten numeros";
+  }
+
+  if (!/^([0-9])*$/.test(input.defense)) {
+    errors.defense = "Solo se permiten numeros";
+  }
+
+  if (!/^([0-9])*$/.test(input.speed) && input.speed) {
+    errors.speed = "Solo se permiten numeros";
+  }
+
+  if (input.types.length <= 0) errors.types = "Debes elegir al menos 2 tipos";
+  else if (input.types.length > 2) errors.types = "Debes elegir al menos 2 tipos";
   if(input.types.length > 0 && input.types.length < 3) errors.types=[];
   
   //if (input.types.length === 1 || input.types.length === 2) errors.types = [];
@@ -63,28 +99,3 @@ const validate = (input) => {
 
 export default validate;
 
-//const validate = (input, name) => {
-//  if (name === "name") {
-//    if (input.name !== "") setErrors({ ...errors, name: "" });
-//    else setErrors({ ...errors, name: "Nombre es requerido" });
-//  } else if (name === "image") {
-//    let regexImage = /^(http|https):\/\/[^\s]+(\.jpg|\.jpeg|\.png|\.gif)$/;
-
-//    if (input.image !== "") setErrors({ ...errors, image: "" });
-//    else {
-//      setErrors({ ...errors, image: "Imagen es requerida" });
-//      return;
-//    }
-//    if (regexImage.test(input.image)) setErrors({ ...errors, image: "" });
-//    else setErrors({ ...errors, image: "Ingresa una url valida" });
-//  } else if (name === "hp") {
-//    if (input.hp !== "") setErrors({ ...errors, hp: "" });
-//    else setErrors({ ...errors, hp: "hp es requerido" });
-//  } else if (name === "attack") {
-//    if (input.attack !== "") setErrors({ ...errors, attack: "" });
-//    else setErrors({ ...errors, attack: "el ataque es requerido" });
-//  } else if (name === "defense") {
-//    if (input.defense !== "") setErrors({ ...errors, defense: "" });
-//    else setErrors({ ...errors, defense: "la defensa es requerida" });
-//  }
-//};

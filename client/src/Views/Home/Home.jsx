@@ -14,6 +14,7 @@ import style from "./Home.module.css";
 // componentes
 import Card from "../../Components/Card/Card";
 import Pagination from "../../Components/Pagination.jsx/Pagination";
+import Navbar from "../../Components/Navbar/Navbar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const Home = () => {
 
   return (
     <div className={style.homeContainer}>
+      <Navbar />
       <div className={style.containerButton}>
         <button
           onClick={(e) => {

@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.imagenes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+/* Estilo para la imagen de fondo */
+.fondoPueblo {
+  /*position: absolute;
+  z-index: 1;*/
+  width: 100%;
+  height: auto;
+}
+/* Estilo para la imagen superior */
+.hooh {
+    width: 100px;
+    margin-top: -250px;
+    margin-right: -250px;
+  position: absolute;
+  z-index: 2;
+}

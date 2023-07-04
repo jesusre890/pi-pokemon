@@ -4,6 +4,7 @@ import { createPokemons, getTypes } from "../../redux/actions";
 import { useEffect } from "react";
 import style from "./Create.module.css";
 import validate from "../../Components/Validate/Validate";
+import snorlax from "../../img-pk/gifsPokes/snorlax.gif";
 
 const Create = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,8 @@ const Create = () => {
     attack: "",
     defense: "",
     speed: "",
-    height: "",
-    weight: "",
+    //height: "",
+    //weight: "",
     types: [],
   });
 
@@ -43,7 +44,7 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(input);
+    console.log(input);
     dispatch(createPokemons(input));
     setInput({
       name: "",
@@ -52,8 +53,8 @@ const Create = () => {
       attack: "",
       defense: "",
       speed: "",
-      height: "",
-      weight: "",
+      //height: 0,
+      //weight: 0,
       types: [],
     });
   };
@@ -143,7 +144,7 @@ const Create = () => {
               <input
                 placeholder="HP"
                 name="hp"
-                type="text"
+                type="number"
                 value={input.hp}
                 onChange={handleChange}
               />
@@ -162,7 +163,7 @@ const Create = () => {
               <input
                 placeholder="Ataque"
                 name="attack"
-                type="text"
+                type="number"
                 value={input.attack}
                 onChange={handleChange}
               />
@@ -181,7 +182,7 @@ const Create = () => {
               <input
                 placeholder="Defensa"
                 name="defense"
-                type="text"
+                type="number"
                 value={input.defense}
                 onChange={handleChange}
               />
@@ -200,7 +201,7 @@ const Create = () => {
               <input
                 placeholder="Velocidad"
                 name="speed"
-                type="text"
+                type="number"
                 value={input.speed}
                 onChange={handleChange}
               />
@@ -219,7 +220,7 @@ const Create = () => {
               <input
                 placeholder="Altura"
                 name="height"
-                type="text"
+                type="number"
                 value={input.height}
                 onChange={handleChange}
               />
@@ -238,7 +239,7 @@ const Create = () => {
               <input
                 placeholder="Peso"
                 name="weight"
-                type="text"
+                type="number"
                 value={input.weight}
                 onChange={handleChange}
               />
@@ -304,6 +305,9 @@ const Create = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div className={style.snorlax}>
+        <img src={snorlax} alt="Snorlax esperando" />
       </div>
     </div>
   );

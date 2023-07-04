@@ -1,6 +1,6 @@
 .containerF {
   display: flex;
-  justify-content: center;
+  justify-content:space-evenly;
   margin-top: 20px;
 }
 
@@ -61,16 +61,22 @@
 }
 
 .spanError {
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-weight: 400;
   font-family: "Montserrat", sans-serif;
+}
+
+.divDelete{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 150px;
 }
 
 .typeElegido {
   padding: 0.2em 0.7em;
   background-color:#2743a8;
   border-radius: 0.3em;
-  position: relative;
   overflow: hidden;
   cursor: pointer;
   transition: 0.5s;
@@ -81,6 +87,27 @@
   text-transform: uppercase;
   color: var(--color);
   z-index: 1;
+  border-radius: 30px;
+  width: 100px;
+}
+
+.botonX {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #315cfd;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 1.2em;
+  font-weight: 550;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.botonX:hover {
+  background: #315cfd;
+  color: white;
+  font-size: 1.5em;
 }
 
 .typeS {
@@ -151,3 +178,5 @@
 .buttonCrear:active {
   filter: brightness(0.8);
 }
+
+

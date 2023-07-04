@@ -147,6 +147,7 @@ span {
   justify-content: center;
   text-align: center;
   position: relative;
+  text-transform: capitalize;
 }
 
 .pokemonStats {

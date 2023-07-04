@@ -105,7 +105,6 @@ const createPokemon = async (
   createdInDb,
   types
 ) => {
-  //console.log("estoy por crear ");
   const [pokemon, created] = await Pokemon.findOrCreate({
     where: { name },
     defaults: {
