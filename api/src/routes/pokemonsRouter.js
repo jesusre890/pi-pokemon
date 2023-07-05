@@ -13,6 +13,6 @@ routerPk.get("/", getPokemonsHandler);
 routerPk.get("/:idPokemon", getPokemonsIdHandler);
 
 //body
-routerPk.post("/create", createPokemonsHandler);
+routerPk.post("/create",createPokemonsHandler);
 
 module.exports = routerPk;

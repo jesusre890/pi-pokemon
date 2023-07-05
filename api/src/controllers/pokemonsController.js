@@ -1,7 +1,6 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
 
-
 const getPokemonsApi = async () => {
   try {
     const api = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=200");
@@ -25,7 +24,7 @@ const getPokemonsApi = async () => {
         //createPokemon: false
       };
     });
-    
+
     const getAllPokemon = await Promise.all(dataPokemon);
     return getAllPokemon;
   } catch (error) {
@@ -61,7 +60,7 @@ const getPokemonsDb = async () => {
   return mapPoke;
 };
 
-const getAllPokemons=async (name) => {
+const getAllPokemons = async (name) => {
   //console.log('estoy en el controller', name);
   const pokemonsDb = await getPokemonsDb();
   //console.log(getPokemonsDb);
@@ -72,7 +71,7 @@ const getAllPokemons=async (name) => {
   let pokemonName;
   if (name) {
     pokemonName = allPokemon.filter(
-      (e) => e.name.toLowerCase().includes(name.toLowerCase()) //verifico que siempre sea la busqueda en minuscula
+      (e) => e.name.toLowerCase().includes(name.toLowerCase())
     );
     if (pokemonName.length) return pokemonName;
     throw new Error("No se encontro ningun pokemon con ese nombre");
@@ -82,7 +81,6 @@ const getAllPokemons=async (name) => {
 
 const getPokemonsById = async (idPokemon) => {
   const all = await getAllPokemons();
-  //console.log('allggggg',all);
   const byId = await all.filter((e) => String(e.id) === idPokemon);
   //console.log('byId',byId);
   //console.log(typeof idPokemon);
@@ -127,12 +125,21 @@ const createPokemon = async (
   return pokemon;
 };
 
+const deletePokemon=async (idPokemon) => {
+  try {
+    const pokemonFind = await Pokemon.findOne({ where: { id: idPokemon } });
+    if (pokemonFind) return await Pokemon.destroy({where: {id: idPokemon}});
+    throw new Error(`Pokemon no encontrado, id: ${idPokemon} incorrecto`)
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 module.exports = {
   getPokemonsApi,
   getPokemonsDb,
   getAllPokemons,
   getPokemonsById,
   createPokemon,
+  deletePokemon,
 };
-
-

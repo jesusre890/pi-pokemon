@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import style from "./Card.module.css";
 
-const Card = ({ image, name, types, hp, id }) => {
+
+const Card = ({ image, name, types, hp, id, createInDb }) => {
+
   return (
     <div className={style.cardContainer} key={id}>
       <div className={style.cardTitle}>

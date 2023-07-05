@@ -2,6 +2,7 @@ const {
   createPokemon,
   getAllPokemons,
   getPokemonsById,
+  deletePokemon,
 } = require("../controllers/pokemonsController.js");
 
 const getPokemonsHandler = async (req, res) => {
@@ -61,7 +62,7 @@ const createPokemonsHandler = async (req, res) => {
     res.status(200).json({ pokemon });
     //console.log(pokemon);
   } catch (error) {
-    res.status(400).json({error: error.message});
+    res.status(400).json({ error: error.message });
   }
 };
 

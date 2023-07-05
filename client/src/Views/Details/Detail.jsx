@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetail, clearDetail, getTypes } from "../../redux/actions";
+import { getDetail, clearDetail } from "../../redux/actions";
 import style from "./Detail.module.css";
 import loading from "../../img-pk/gifsPokes/Mr.-Rime-Pokemon-PNG.gif";
 import fire from "../../img-pk/gifsPokes/fire.gif";
@@ -32,12 +32,10 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getDetail(id));
-    dispatch(getTypes());
     return () => dispatch(clearDetail());
   }, [dispatch]);
 
   const detailPokemons = useSelector((state) => state.detail);
-  //console.log(detailPokemons[0]?.types[0]);
 
   const typesColors = {
     fire: "#F57D31",
@@ -82,7 +80,6 @@ const Detail = () => {
     dark: dark,
     fairy: fairy,
     unknown: desconocido,
-    shadow: "#36045E",
   };
 
   return (

@@ -2,9 +2,10 @@ import "./App.css";
 import { Route, Routes} from "react-router-dom";
 import Home from "./Views/Home/Home";
 import Landing from "./Views/Landing/Landing";
-import Navbar from "./Components/Navbar/Navbar";
 import Detail from "./Views/Details/Detail";
 import Create from "./Views/Create/Create";
+//import axios from 'axios'
+//axios.defaults.baseURL = "http://localhost:3001/"
 
 function App() {
 

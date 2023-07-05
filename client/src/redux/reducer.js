@@ -4,18 +4,19 @@ import {
   FILTER_CREATED,
   ORDER_BY_NAME,
   ORDER_BY_ATTACK,
-  ORDER_BY_TYPE,
+  FILTER_BY_TYPE,
   GET_NAME_POKEMONS,
   GET_TYPES,
   GET_DETAIL,
-  CLEAR_DETAIL
+  CLEAR_DETAIL,
 } from "./actions";
 
 let initialState = {
   pokemons: [],
   allPokemons: [],
   types: [],
-  detail: {}
+  detail: {},
+  notFound: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -25,12 +26,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: action.payload,
         allPokemons: action.payload,
+        notFound: false,
       };
     case GET_NAME_POKEMONS:
-      return {
-        ...state,
-        pokemons: action.payload,
-      };
+      if(action.payload.error) {
+        return {
+          ...state,
+          pokemons: [],
+          notFound: true
+        }
+      } else {
+        return {
+          ...state,
+          pokemons: action.payload,
+          notFound: false
+        }
+      }
     case CREATE_POKEMONS:
       return {
         ...state,
@@ -76,45 +87,34 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: sortedAll,
       };
+    
     case ORDER_BY_ATTACK:
-      let sortedAttack =
-        action.payload === "max"
-          ? state.pokemons.sort((a, b) => {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.pokemons.sort((a, b) => {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            });
+      let sortedAttack=[...state.allPokemons]
+      
+      if(action.payload==='min') {
+        sortedAttack.sort((a, b) => a.attack - b.attack);
+      }
+      if(action.payload==='max') {
+        sortedAttack.sort((a, b) => b.attack - a.attack);
+      }
       return {
         ...state,
         pokemons: sortedAttack,
       };
 
-    case ORDER_BY_TYPE:
-      let orderType
+    case FILTER_BY_TYPE:
+      let filterType;
       if (action.payload === "All") {
-        orderType = state.allPokemons;
+        filterType = state.allPokemons;
       } else {
-        orderType = state.allPokemons.filter((e) =>
+        filterType = state.allPokemons.filter((e) =>
           e.types.includes(action.payload)
         );
       }
       //console.log(state.pokemons)
       return {
         ...state,
-        pokemons: orderType,
+        pokemons: filterType,
       };
     case GET_DETAIL:
       return {
@@ -126,7 +126,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detail: {}
       }
-
+    
     default:
       return { ...state };
   }

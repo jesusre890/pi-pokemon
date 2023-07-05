@@ -8,8 +8,8 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const GET_NAME_POKEMONS = "GET_NAME_POKEMONS";
 export const GET_TYPES = "GET_TYPES";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
-export const ORDER_BY_TYPE="ORDER_BY_TYPE";
-export const GET_DETAIL="GET_DETAIL";
+export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const GET_DETAIL = "GET_DETAIL";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
 
 //ACTIONS
@@ -54,7 +54,11 @@ export const getNamePokemons = (name) => {
         payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      //console.log(error);
+      return dispatch({
+        type: GET_NAME_POKEMONS,
+        payload: {error: error}
+      })
     }
   };
 };
@@ -88,10 +92,10 @@ export const orderByAttack = (payload) => {
   };
 };
 
-export const orderByType = (payload) => {
+export const filterByType = (payload) => {
   //console.log(payload);
   return {
-    type: ORDER_BY_TYPE,
+    type: FILTER_BY_TYPE,
     payload,
   };
 };
@@ -110,8 +114,9 @@ export const getDetail = (id) => {
   };
 };
 
-export const clearDetail=() => {
+export const clearDetail = () => {
   return {
-    type: CLEAR_DETAIL
-  }
-}
+    type: CLEAR_DETAIL,
+  };
+};
+

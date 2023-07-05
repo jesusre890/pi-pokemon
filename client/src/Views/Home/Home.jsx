@@ -7,7 +7,7 @@ import {
   getTypes,
   orderByName,
   orderByAttack,
-  orderByType,
+  filterByType,
 } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
@@ -16,11 +16,13 @@ import Card from "../../Components/Card/Card";
 import Pagination from "../../Components/Pagination.jsx/Pagination";
 import Navbar from "../../Components/Navbar/Navbar";
 import loading from "../../img-pk/gifsPokes/Mr.-Rime-Pokemon-PNG.gif";
+import notFoundPs from "../../img-pk/gifsPokes/notFound.gif";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allPokemons = useSelector((state) => state.pokemons);
   const allTypes = useSelector((state) => state.types);
+  const notFound = useSelector((state) => state.notFound);
   const [orden, setOrden] = useState("");
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +32,7 @@ const Home = () => {
   const currentPokemons = allPokemons.slice(
     indexOfFirstPokemon,
     indexOfLastPokemon
-  ); //pagina actual
+  );
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -49,8 +51,8 @@ const Home = () => {
   const handleSort = (e) => {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
-    setCurrentPage(1); // Lo setea en la pagina 1
-    setOrden(`Ordenado ${e.target.value}`); //modifica el estado local para hacer el ordenamiento
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`);
   };
 
   const handleFilterCreated = (e) => {
@@ -60,7 +62,7 @@ const Home = () => {
 
   const handleSortAttack = (e) => {
     e.preventDefault();
-    dispatch(orderByAttack(e.target.value));
+    if (e.target.value !== "attack") dispatch(orderByAttack(e.target.value));
     setCurrentPage(1);
     setOrden(`Ordenado ${e.target.value}`);
   };
@@ -68,7 +70,7 @@ const Home = () => {
   const handleFilterTypes = (e) => {
     e.preventDefault();
     if (e.target.value !== "Tipos") {
-      dispatch(orderByType(e.target.value));
+      dispatch(filterByType(e.target.value));
     }
   };
 
@@ -84,7 +86,7 @@ const Home = () => {
         >
           <svg
             viewBox="0 0 16 16"
-            class="bi bi-arrow-repeat"
+            className="bi bi-arrow-repeat"
             fill="currentColor"
             height="16"
             width="16"
@@ -155,6 +157,12 @@ const Home = () => {
               </Link>
             );
           })
+        ) : notFound ? (
+          <div className={style.psydock}>
+            <p className={style.nF}>No existe pokemon con ese nombre</p>
+            <p className={style.signos}>¿?</p>
+              <img src={notFoundPs} alt="notFound" style={{width: 130}} />
+          </div>
         ) : (
           <div className={style.containerLoading}>
             <img className={style.mime} src={loading} alt="Mr.Mime cargando" />
