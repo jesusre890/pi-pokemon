@@ -13,7 +13,7 @@
   box-shadow: rgba(0, 0, 0, 0.4) 10px 20px 30px,
     rgba(0, 0, 0, 0.3) 10px 1px 53px 3px, rgba(1, 0, 0, 0.2) 0px -1px 3px inset;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: all 0.9s;
   user-select: none;
   font-weight: bolder;
   /*color: #fff;*/
@@ -21,7 +21,6 @@
 
 .cardContainer:hover {
   transform: scale(1.021);
-  background-color: whitesmoke;
   background: #9a9a9a;
 }
 

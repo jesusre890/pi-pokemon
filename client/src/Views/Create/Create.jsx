@@ -115,9 +115,9 @@ const Create = () => {
         </Link>
         <div className={style.containerGuia}>
           <div className={style.necesitasP}>
-            <h3>Nacesitas imagenes para crear tu pokemon?</h3>
+            <h3>Necesitás imágenes para crear tu pokemon?</h3>
             <h4>
-              Podes buscar aqui{" "}
+              Podés buscar aquí: {" "}
               <a
                 className={style.linkParaCrear}
                 href="https://custom-doodle.com/collection/pokemon/"
@@ -128,10 +128,11 @@ const Create = () => {
             </h4>
           </div>
           <div className={style.guiaP}>
-            <h4>Guia:</h4>
+            <h4 className={style.guia1}>Guia:</h4>
             <p>1- Elige el pokemon deseado</p>
             <p>2- Haz click derecho sobre el mismo </p>
             <p>3- Selecciona "Copiar dirección de la imagen" </p>
+            <p>4- Pega la dirección en el formulario </p>
           </div>
         </div>
       </div>
@@ -140,7 +141,6 @@ const Create = () => {
           <h3 className={style.formTitle}>Crea un pokemon</h3>
           <div>
             <div className={style.inputContainer}>
-              {/*<label>Nombre:</label>*/}
               <input
                 placeholder="Nombre"
                 name="name"

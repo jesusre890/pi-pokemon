@@ -69,6 +69,3 @@ const Landing = () => {
 
 export default Landing;
 
-{
-  /*<img src={fondo} alt="pueblo paletta" className={style.fondoPueblo} />*/
-}

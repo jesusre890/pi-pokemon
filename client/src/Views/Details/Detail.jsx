@@ -34,7 +34,7 @@ const Detail = () => {
     dispatch(getDetail(id));
     dispatch(getTypes());
     return () => dispatch(clearDetail());
-  }, [dispatch, id]);
+  }, [dispatch]);
 
   const detailPokemons = useSelector((state) => state.detail);
   //console.log(detailPokemons[0]?.types[0]);
@@ -123,7 +123,7 @@ const Detail = () => {
             </div>
             <div className={style.contentDetail}>
               <h1 className={style.pokemonNameDetail}>
-                {detailPokemons[0].name.toUpperCase()}
+                {detailPokemons[0].name}
               </h1>
               <h3
                 className={style.pokemonType}

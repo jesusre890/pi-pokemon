@@ -27,18 +27,6 @@ const validate = (input) => {
     errors.defense = "No puede estar vacio";
   }
 
-  //if (input.speed === "") {
-  //  errors.speed = "No puede estar vacio";
-  //}
-
-  //if (input.height === "") {
-  //  errors.height = "No puede estar vacio";
-  //}
-
-  //if (input.weight === "") {
-  //  errors.weight = "No puede estar vacio";
-  //}
-
   if (input.hp <= 0) {
     errors.hp = "No puede ser menor a 0";
   }
@@ -87,12 +75,40 @@ const validate = (input) => {
     errors.speed = "Solo se permiten numeros";
   }
 
-  if (input.types.length <= 0) errors.types = "Debes elegir al menos 2 tipos";
-  if(input.types.length>2) errors.types="No puedes elegir mas de 2 tipos";
-  
-  if(!errors.types) {
-    if (input.types.length > 0 && input.types.length < 3) errors.types = [];
+  //if (input.types.length === 0) errors.types = "Debes elegir al menos 1 tipo";
+  //if (input.types.length > 2) errors.types = "No puedes elegir mas de 2 tipos";
+
+  //if(!errors.types) {
+  //  if (input.types.length > 0 && input.types.length < 3) errors.types = [];
+  //}
+
+  if (input.types.length <= 0) {
+    errors.types = "Debes elegir al menos 2 tipos";
   }
+  if (input.types.length >= 3) errors.types = "No puedes elegir mas de 2 tipos";
+
+  if (!errors.types) errors.types = [];
+
+  //if (input.types.length ) {
+  //  errors.types = "Debes elegir al menos 1 tipo";
+  //}
+
+  //if (input.types.length >= 1) {
+  //  errors.types = "No puedes elegir mas de 2 tipos";
+  //}
+
+  //if(input.types.length===0) {       //OPCION 1 PERMITE CREAR
+  //  errors.types = "Debes elegir 1 o 2 tipo";
+  //} else if(input.types.length>2) {
+  //  errors.types = "No puedes elegir mas de 2 tipos";
+  //} else {
+  //  errors.types = [];
+  //}
+
+  //errors.types = [];
+  //if(input.types.length>2) errors.types="No puedes elegir mas de 2 tipos";
+
+  //if(input.types.length===1||input.types.length===2) errors.types=[];
 
   //if (input.types.length === 1 || input.types.length === 2) errors.types = [];
   //si es correcto limpia los errores

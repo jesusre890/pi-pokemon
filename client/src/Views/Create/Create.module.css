@@ -1,7 +1,7 @@
 .containerF {
   display: flex;
-  justify-content:space-evenly;
-  margin-top: 60px;
+  justify-content: space-evenly;
+  margin-top: 90px;
 }
 
 .formContainer {
@@ -48,7 +48,7 @@
 .selectType {
   width: 100px;
   height: 30px;
-  border: 3px solid #315cfd;
+  border: 1px solid #315cfd;
   border-radius: 45px;
   transition: all 0.3s;
   cursor: pointer;
@@ -66,7 +66,7 @@
   font-family: "Montserrat", sans-serif;
 }
 
-.divDelete{
+.divDelete {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -75,7 +75,7 @@
 
 .typeElegido {
   padding: 0.2em 0.7em;
-  background-color:#2743a8;
+  background-color: #2743a8;
   border-radius: 0.3em;
   overflow: hidden;
   cursor: pointer;
@@ -91,7 +91,12 @@
   width: 100px;
 }
 
-.guiaP{
+.guia1 {
+  margin-bottom: 10px;
+}
+
+.guiaP {
+  margin-top: 10px;
   text-align: left;
 }
 
@@ -105,7 +110,7 @@
   background: white;
   font-size: 1.2em;
   font-weight: 550;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .botonX:hover {
@@ -129,20 +134,19 @@
 .buttonCrear {
   --color: #315cfd;
   padding: 0.8em 1.7em;
-  background-color: transparent;
-  border-radius: 0.3em;
+  background-color:#dbdbdb;
+  border-radius: 1.3em;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   transition: 0.5s;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 17px;
-  border: 1px solid;
+  border: 2px solid;
   font-family: inherit;
   text-transform: uppercase;
   color: var(--color);
   z-index: 1;
-  /*height: 30px;*/
 }
 
 .buttonCrear::before,
@@ -171,7 +175,7 @@
 
 .buttonCrear:hover::before,
 .buttonCrear:hover::after {
-  height: 410px;
+  height: 310px;
   width: 410px;
 }
 
@@ -184,53 +188,54 @@
 }
 
 .buttonVolver {
- display: flex;
- height: 3em;
- width: 100px;
- align-items: center;
- justify-content: center;
- background-color: #eeeeee4b;
- border-radius: 3px;
- letter-spacing: 1px;
- transition: all 0.2s linear;
- cursor: pointer;
- border: none;
- background: #fff;
- margin-top: 50px;
- display: flex;
- align-items: center;
+  display: flex;
+  height: 3em;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee4b;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
 }
 
-.spanV{
+.spanV {
   margin-bottom: -8.5px;
 }
 
 .buttonVolver > svg {
- margin-right: 5px;
- margin-left: 5px;
- font-size: 20px;
- transition: all 0.4s ease-in;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: all 0.4s ease-in;
 }
 
 .buttonVolver:hover > svg {
- font-size: 1.2em;
- transform: translateX(-5px);
+  font-size: 1.2em;
+  transform: translateX(-5px);
 }
 
 .buttonVolver:hover {
- box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
- transform: translateY(-2px);
+  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+  transform: translateY(-2px);
 }
 
-.spanBo{
+.spanBo {
   text-decoration: none;
 }
 
-.containerGuia{
+.containerGuia {
   margin-top: 50px;
   background-color: whitesmoke;
   border-radius: 30px;
   padding: 20px;
+  color: #575757;
 }
 
 .containerGuia p {
@@ -246,32 +251,41 @@
 @-webkit-keyframes scale-up-hor-left {
   0% {
     -webkit-transform: scaleX(0.4);
-            transform: scaleX(0.4);
+    transform: scaleX(0.4);
     -webkit-transform-origin: 0% 0%;
-            transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
   }
   100% {
     -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    transform: scaleX(1);
     -webkit-transform-origin: 0% 0%;
-            transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
   }
 }
 @keyframes scale-up-hor-left {
   0% {
     -webkit-transform: scaleX(0.4);
-            transform: scaleX(0.4);
+    transform: scaleX(0.4);
     -webkit-transform-origin: 0% 0%;
-            transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
   }
   100% {
     -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    transform: scaleX(1);
     -webkit-transform-origin: 0% 0%;
-            transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
   }
 }
 
-.linkParaCrear{
-  color:darkorange;
+.linkParaCrear {
+  color: darkorange;
+}
+
+.snorlax {
+  transition: all 0.4s;
+}
+
+.snorlax:hover {
+  cursor: pointer;
+  transform: scale(1.01);
 }
