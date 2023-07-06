@@ -2,7 +2,6 @@ const {
   createPokemon,
   getAllPokemons,
   getPokemonsById,
-  deletePokemon,
 } = require("../controllers/pokemonsController.js");
 
 const getPokemonsHandler = async (req, res) => {
@@ -21,10 +20,8 @@ const getPokemonsHandler = async (req, res) => {
 
 const getPokemonsIdHandler = async (req, res) => {
   const { idPokemon } = req.params;
-  //console.log(idPokemon);
   try {
     const response = await getPokemonsById(idPokemon);
-    //console.log(response);
     res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -44,7 +41,6 @@ const createPokemonsHandler = async (req, res) => {
     createdInDb = true,
     types,
   } = req.body;
-  //console.log('entre');
   try {
     const pokemon = await createPokemon(
       name,
@@ -58,9 +54,7 @@ const createPokemonsHandler = async (req, res) => {
       createdInDb,
       types
     );
-    //res.status(200).json({pokemon});
     res.status(200).json({ pokemon });
-    //console.log(pokemon);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

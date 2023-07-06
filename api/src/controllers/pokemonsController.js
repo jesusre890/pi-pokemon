@@ -21,7 +21,6 @@ const getPokemonsApi = async () => {
         speed: i.stats[5].base_stat,
         height: i.height,
         weight: i.weight,
-        //createPokemon: false
       };
     });
 
@@ -35,13 +34,11 @@ const getPokemonsApi = async () => {
 const getPokemonsDb = async () => {
   const allPokemonsDb = await Pokemon.findAll({
     //busco en la tabla los modelos que necesito
-    //raw: true,
     include: {
       model: Type,
       atributes: ["name"],
     },
   });
-  //console.log('all pokemon',allPokemonsDb);
   const mapPoke = allPokemonsDb.map((e) => {
     return {
       id: e.id,
@@ -82,8 +79,6 @@ const getAllPokemons = async (name) => {
 const getPokemonsById = async (idPokemon) => {
   const all = await getAllPokemons();
   const byId = await all.filter((e) => String(e.id) === idPokemon);
-  //console.log('byId',byId);
-  //console.log(typeof idPokemon);
   if (byId.length) {
     return byId;
   } else {
@@ -140,6 +135,5 @@ module.exports = {
   getPokemonsDb,
   getAllPokemons,
   getPokemonsById,
-  createPokemon,
-  deletePokemon,
+  createPokemon
 };

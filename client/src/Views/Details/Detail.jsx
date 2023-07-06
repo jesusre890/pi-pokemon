@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -33,7 +32,7 @@ const Detail = () => {
   useEffect(() => {
     dispatch(getDetail(id));
     return () => dispatch(clearDetail());
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const detailPokemons = useSelector((state) => state.detail);
 

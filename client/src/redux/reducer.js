@@ -53,7 +53,6 @@ const rootReducer = (state = initialState, action) => {
         types: action.payload,
       };
     case FILTER_CREATED:
-      //const allPokemonsFiltered = state.allPokemons
       const createdFilter =
         action.payload === "created"
           ? state.allPokemons.filter((e) => e.createdInDb)
@@ -111,7 +110,6 @@ const rootReducer = (state = initialState, action) => {
           e.types.includes(action.payload)
         );
       }
-      //console.log(state.pokemons)
       return {
         ...state,
         pokemons: filterType,

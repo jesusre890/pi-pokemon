@@ -18,8 +18,6 @@ const Create = () => {
     attack: "",
     defense: "",
     speed: "",
-    //height: "",
-    //weight: "",
     types: [],
   });
 
@@ -31,7 +29,6 @@ const Create = () => {
 
   const disable = () => {
     let disabled = true;
-    //console.log(errors);
     for (let error in errors) {
       //console.log("soy error", error);
       if (errors[error] === "" || errors[error].length === 0) disabled = false;
@@ -45,7 +42,6 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
     dispatch(createPokemons(input));
     setInput({
       name: "",
@@ -54,8 +50,6 @@ const Create = () => {
       attack: "",
       defense: "",
       speed: "",
-      //height: 0,
-      //weight: 0,
       types: [],
     });
   };
@@ -117,11 +111,12 @@ const Create = () => {
           <div className={style.necesitasP}>
             <h3>Necesitás imágenes para crear tu pokemon?</h3>
             <h4>
-              Podés buscar aquí: {" "}
+              Podés buscar aquí:{" "}
               <a
                 className={style.linkParaCrear}
                 href="https://custom-doodle.com/collection/pokemon/"
                 target="_blank"
+                rel="noreferrer"
               >
                 Link
               </a>
@@ -329,15 +324,11 @@ const Create = () => {
         </form>
         <div>
           {input.types.map((e, index) => (
-            <div className={style.divDelete}>
+            <div className={style.divDelete} key={index}>
               <p className={style.typeElegido} style={{ color: "white" }}>
                 {e}
               </p>
-              <button
-                key={index}
-                className={style.botonX}
-                onClick={() => handleDelete(e)}
-              >
+              <button className={style.botonX} onClick={() => handleDelete(e)}>
                 X
               </button>
             </div>

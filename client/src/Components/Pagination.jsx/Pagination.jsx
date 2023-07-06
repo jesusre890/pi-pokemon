@@ -19,7 +19,6 @@ export default function Pagination({
         {pageNumbers &&
           pageNumbers.map((number, index) => (
             <li
-              //className={style.listPage}
               key={index}
               style={{ listStyle: "none" }}
             >

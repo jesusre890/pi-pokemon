@@ -39,6 +39,8 @@
   font-size: 0.9em;
   font-weight: 300;
   font-family: 'Montserrat', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 8px 12px,
+    rgba(0, 0, 0, 0.3) 5px 1px 10px 3px, rgba(1, 0, 0, 0.2) 0px -1px 2px inset;
 }
 
 .azButton:hover {
@@ -58,6 +60,8 @@
   font-size: 0.9em;
   font-weight: 300;
   font-family: 'Montserrat', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 8px 12px,
+    rgba(0, 0, 0, 0.3) 5px 1px 10px 3px, rgba(1, 0, 0, 0.2) 0px -1px 2px inset;
 }
 
 .typesButton:hover {
@@ -77,6 +81,8 @@
   font-size: 0.9em;
   font-weight: 300;
   font-family: 'Montserrat', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 8px 12px,
+    rgba(0, 0, 0, 0.3) 5px 1px 10px 3px, rgba(1, 0, 0, 0.2) 0px -1px 2px inset;
 }
 
 .attackButton:hover {
@@ -96,6 +102,8 @@
   font-size: 0.9em;
   font-weight: 300;
   font-family: 'Montserrat', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 8px 12px,
+    rgba(0, 0, 0, 0.3) 5px 1px 10px 3px, rgba(1, 0, 0, 0.2) 0px -1px 2px inset;
 }
 
 .origenButton:hover {
@@ -121,6 +129,8 @@
   align-items: center;
   border: none;
   height: 30px;
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 8px 12px,
+    rgba(0, 0, 0, 0.3) 5px 1px 10px 3px, rgba(1, 0, 0, 0.2) 0px -1px 2px inset;
 }
 
 .recargar:hover {
