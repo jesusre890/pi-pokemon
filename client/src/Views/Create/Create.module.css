@@ -132,59 +132,115 @@
 }
 
 .buttonCrear {
-  --color: #315cfd;
-  padding: 0.8em 1.7em;
-  background-color:#dbdbdb;
-  border-radius: 1.3em;
   position: relative;
+  width: 165px;
+  height: 56px;
   overflow: hidden;
-  cursor: pointer;
-  transition: 0.5s;
-  font-weight: 600;
-  font-size: 17px;
-  border: 2px solid;
-  font-family: inherit;
-  text-transform: uppercase;
-  color: var(--color);
-  z-index: 1;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding-left: 35px;
+  box-shadow: 2.9px 2.9px 2.2px rgba(0, 0, 0, 0.019),
+              5.2px 5.2px 5.3px rgba(0, 0, 0, 0.023),
+              7px 7px 10px rgba(0, 0, 0, 0.025),
+              8.7px 8.7px 17.9px rgba(0, 0, 0, 0.024),
+              11.3px 11.3px 33.4px rgba(0, 0, 0, 0.023),
+              20px 20px 80px rgba(0, 0, 0, 0.02);
 }
 
-.buttonCrear::before,
-.buttonCrear::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 50px;
-  transform: translate(-50%, -50%);
+.pika {
   position: absolute;
-  border-radius: 50%;
-  z-index: -1;
-  background-color: var(--color);
-  transition: 1s ease;
+  top: -100%;
+  left: 42%;
+  transition: 0.5s all;
+  animation: tilt 1.1s infinite ease-in-out;
 }
 
-.buttonCrear::before {
-  top: -1em;
-  left: -1em;
+@keyframes tilt {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(10deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
 }
 
-.buttonCrear::after {
-  left: calc(100% + 1em);
-  top: calc(100% + 1em);
+.pokeball {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  animation: rotate_4991 1s linear infinite;
 }
 
-.buttonCrear:hover::before,
-.buttonCrear:hover::after {
-  height: 310px;
-  width: 410px;
+@keyframes rotate_4991 {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.buttonCrear:hover {
-  color: rgb(10, 25, 30);
+.buttonCrear:hover .pika {
+  top: 90%;
 }
 
-.buttonCrear:active {
-  filter: brightness(0.8);
+.buttonCrear:hover .pokeball {
+  animation: none;
+  transform: scale(0);
+}
+
+.buttonCrear:hover .go {
+  color: transparent;
+}
+
+.go {
+  position: absolute;
+  top: 18%;
+  left: 45%;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.pika1, .pika2 {
+  position: absolute;
+  font-size: 11px;
+  opacity: 0;
+  animation: pulse-animation_0011 1s infinite;
+}
+
+@keyframes pulse-animation_0011 {
+  0% {
+    transform: rotateZ(-30deg) scale(1);
+  }
+
+  50% {
+    transform: rotateZ(-30deg) scale(1.1);
+  }
+
+  100% {
+    transform: rotateZ(-30deg) scale(1);
+  }
+}
+
+.pika1 {
+  top: 30%;
+  left: 72%;
+}
+
+.pika2 {
+  top: 55%;
+  left: 75%;
+}
+
+.buttonCrear:hover .pika1, .buttonCrear:hover .pika2 {
+  opacity: 1;
 }
 
 .buttonVolver {
@@ -194,7 +250,7 @@
   align-items: center;
   justify-content: center;
   background-color: #eeeeee4b;
-  border-radius: 3px;
+  border-radius: 10px;
   letter-spacing: 1px;
   transition: all 0.2s linear;
   cursor: pointer;
