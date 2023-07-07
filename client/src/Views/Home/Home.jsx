@@ -8,6 +8,7 @@ import {
   orderByName,
   orderByAttack,
   filterByType,
+  orderByHp
 } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
@@ -23,10 +24,10 @@ const Home = () => {
   const allPokemons = useSelector((state) => state.pokemons);
   const allTypes = useSelector((state) => state.types);
   const notFound = useSelector((state) => state.notFound);
-  const [orden, setOrden] = useState("");
+  const [, setOrden] = useState("");
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+  const [pokemonsPerPage,] = useState(12);
   const indexOfLastPokemon = currentPage * pokemonsPerPage; // 6
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage; // 0
   const currentPokemons = allPokemons.slice(
@@ -72,6 +73,13 @@ const Home = () => {
     if (e.target.value !== "Tipos") {
       dispatch(filterByType(e.target.value));
     }
+  };
+
+  const handleSortHp = (e) => {
+    e.preventDefault();
+    if (e.target.value !== "jp") dispatch(orderByHp(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`);
   };
 
   return (
@@ -127,6 +135,14 @@ const Home = () => {
           <option value="max">max</option>
         </select>
         <select
+          onChange={(e) => handleSortHp(e)}
+          className={style.attackButton}
+        >
+          <option value="hp">hp</option>
+          <option value="min">min</option>
+          <option value="max">max</option>
+        </select>
+        <select
           onChange={(e) => handleFilterCreated(e)}
           className={style.origenButton}
         >
@@ -149,6 +165,7 @@ const Home = () => {
                 <Card
                   name={e.name}
                   hp={e.hp}
+                  attack={e.attack}
                   image={e.image}
                   id={e.id}
                   types={e.types}

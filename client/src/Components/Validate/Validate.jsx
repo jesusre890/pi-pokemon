@@ -75,6 +75,13 @@ const validate = (input) => {
     errors.speed = "Solo se permiten numeros";
   }
 
+  if (input.types.length <= 0) {
+    errors.types = "Debes elegir al menos 2 tipos";
+  }
+  if (input.types.length >= 3) errors.types = "No puedes elegir mas de 2 tipos";
+
+  if (!errors.types) errors.types = [];
+
   //if (input.types.length === 0) errors.types = "Debes elegir al menos 1 tipo";
   //if (input.types.length > 2) errors.types = "No puedes elegir mas de 2 tipos";
 
@@ -82,12 +89,7 @@ const validate = (input) => {
   //  if (input.types.length > 0 && input.types.length < 3) errors.types = [];
   //}
 
-  if (input.types.length <= 0) {
-    errors.types = "Debes elegir al menos 2 tipos";
-  }
-  if (input.types.length >= 3) errors.types = "No puedes elegir mas de 2 tipos";
-
-  if (!errors.types) errors.types = [];
+  
 
   //if (input.types.length ) {
   //  errors.types = "Debes elegir al menos 1 tipo";

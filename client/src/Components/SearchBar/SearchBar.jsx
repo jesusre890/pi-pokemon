@@ -24,7 +24,7 @@ const SearchBar = () => {
     <div className={style.containerSB}>
       <input
         type="text"
-        placeholder="Buscar..."
+        placeholder="Pokedex..."
         onChange={(e) => handleInputChange(e)}
         className={style.inputSB}
       />

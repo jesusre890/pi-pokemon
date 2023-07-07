@@ -1,6 +1,5 @@
 import {
   GET_POKEMONS,
-  CREATE_POKEMONS,
   FILTER_CREATED,
   ORDER_BY_NAME,
   ORDER_BY_ATTACK,
@@ -9,6 +8,7 @@ import {
   GET_TYPES,
   GET_DETAIL,
   CLEAR_DETAIL,
+  ORDER_BY_HP
 } from "./actions";
 
 let initialState = {
@@ -29,24 +29,20 @@ const rootReducer = (state = initialState, action) => {
         notFound: false,
       };
     case GET_NAME_POKEMONS:
-      if(action.payload.error) {
+      if (action.payload.error) {
         return {
           ...state,
           pokemons: [],
-          notFound: true
-        }
+          notFound: true,
+        };
       } else {
         return {
           ...state,
           pokemons: action.payload,
-          notFound: false
-        }
+          notFound: false,
+        };
       }
-    case CREATE_POKEMONS:
-      return {
-        ...state,
-        type: action.payload,
-      };
+
     case GET_TYPES:
       return {
         ...state,
@@ -86,14 +82,14 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: sortedAll,
       };
-    
+
     case ORDER_BY_ATTACK:
-      let sortedAttack=[...state.allPokemons]
-      
-      if(action.payload==='min') {
+      let sortedAttack = [...state.allPokemons];
+
+      if (action.payload === "min") {
         sortedAttack.sort((a, b) => a.attack - b.attack);
       }
-      if(action.payload==='max') {
+      if (action.payload === "max") {
         sortedAttack.sort((a, b) => b.attack - a.attack);
       }
       return {
@@ -117,14 +113,28 @@ const rootReducer = (state = initialState, action) => {
     case GET_DETAIL:
       return {
         ...state,
-        detail: action.payload
-      }
+        detail: action.payload,
+      };
     case CLEAR_DETAIL:
       return {
         ...state,
-        detail: {}
+        detail: {},
+      };
+
+    case ORDER_BY_HP:
+      let sortedHp = [...state.allPokemons];
+
+      if (action.payload === "min") {
+        sortedHp.sort((a, b) => a.hp - b.hp);
       }
-    
+      if (action.payload === "max") {
+        sortedHp.sort((a, b) => b.hp - a.hp);
+      }
+      return {
+        ...state,
+        pokemons: sortedHp,
+      };
+
     default:
       return { ...state };
   }

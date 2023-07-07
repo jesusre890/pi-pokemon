@@ -32,7 +32,8 @@ const Detail = () => {
   useEffect(() => {
     dispatch(getDetail(id));
     return () => dispatch(clearDetail());
-  }, [dispatch, id]);
+    // eslint-disable-next-line
+  }, []);
 
   const detailPokemons = useSelector((state) => state.detail);
 

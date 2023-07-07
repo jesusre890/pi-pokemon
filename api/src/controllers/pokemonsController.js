@@ -60,10 +60,8 @@ const getPokemonsDb = async () => {
 const getAllPokemons = async (name) => {
   //console.log('estoy en el controller', name);
   const pokemonsDb = await getPokemonsDb();
-  //console.log(getPokemonsDb);
   const pokemonsApi = await getPokemonsApi();
   const allPokemon = pokemonsDb.concat(pokemonsApi);
-  //console.log(allPokemon);
 
   let pokemonName;
   if (name) {
@@ -118,16 +116,6 @@ const createPokemon = async (
   pokemon.addTypes(typesDb);
 
   return pokemon;
-};
-
-const deletePokemon=async (idPokemon) => {
-  try {
-    const pokemonFind = await Pokemon.findOne({ where: { id: idPokemon } });
-    if (pokemonFind) return await Pokemon.destroy({where: {id: idPokemon}});
-    throw new Error(`Pokemon no encontrado, id: ${idPokemon} incorrecto`)
-  } catch (error) {
-    throw new Error(error.message);
-  }
 };
 
 module.exports = {

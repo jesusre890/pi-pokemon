@@ -2,12 +2,12 @@ import axios from "axios";
 
 //ACTIONS-TYPES
 export const GET_POKEMONS = "GET_POKEMONS";
-export const CREATE_POKEMONS = "CREATE_POKEMONS";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const GET_NAME_POKEMONS = "GET_NAME_POKEMONS";
 export const GET_TYPES = "GET_TYPES";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
+export const ORDER_BY_HP = "ORDER_BY_HP";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const GET_DETAIL = "GET_DETAIL";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
@@ -16,9 +16,7 @@ export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const getPokemons = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        "http://localhost:3001/pokemons/"
-      );
+      const response = await axios.get("http://localhost:3001/pokemons/");
       return dispatch({ type: GET_POKEMONS, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -33,7 +31,7 @@ export const createPokemons = (info) => {
         "http://localhost:3001/pokemons/create",
         info
       );
-      console.log(response);
+      //console.log(response);
       alert("Pokemon creado, Gran trabajo!");
       return response;
     } catch (error) {
@@ -56,8 +54,8 @@ export const getNamePokemons = (name) => {
     } catch (error) {
       return dispatch({
         type: GET_NAME_POKEMONS,
-        payload: {error: error}
-      })
+        payload: { error: error },
+      });
     }
   };
 };
@@ -117,3 +115,9 @@ export const clearDetail = () => {
   };
 };
 
+export const orderByHp = (payload) => {
+  return {
+    type: ORDER_BY_HP,
+    payload,
+  };
+};

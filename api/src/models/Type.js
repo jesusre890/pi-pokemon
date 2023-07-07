@@ -18,6 +18,6 @@ module.exports=(sequelize) => {
           allowNull: false,
         },
       },
-      { freezeTableName: true, timestamps: false } // para que no se generen las columnas de los datos
+      { freezeTableName: true, timestamps: false }
     );
 };

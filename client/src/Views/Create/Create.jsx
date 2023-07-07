@@ -23,6 +23,7 @@ const Create = () => {
 
   useEffect(() => {
     dispatch(getTypes());
+    // eslint-disable-next-line
   }, []);
 
   const [errors, setErrors] = useState({});

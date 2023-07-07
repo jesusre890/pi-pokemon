@@ -4,7 +4,7 @@ const {
   getPokemonsById,
 } = require("../controllers/pokemonsController.js");
 
-const getPokemonsHandler = async (req, res) => {
+const getPokemonsHandler = async (req, res) => { 
   let { name } = req.query;
   try {
     if (name) {
@@ -38,7 +38,7 @@ const createPokemonsHandler = async (req, res) => {
     speed = null,
     height = null,
     weight = null,
-    createdInDb = true,
+    createdInDb = true, //no es necesario 
     types,
   } = req.body;
   try {
