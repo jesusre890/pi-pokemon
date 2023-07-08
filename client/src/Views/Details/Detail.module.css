@@ -183,7 +183,7 @@ span {
   align-items: center;
   justify-content: center;
   background-color: #eeeeee4b;
-  border-radius: 3px;
+  border-radius: 10px;
   letter-spacing: 1px;
   transition: all 0.2s linear;
   cursor: pointer;
