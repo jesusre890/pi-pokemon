@@ -53,8 +53,6 @@
   text-decoration: none;
 }
 
-
-
 /*carta*/
 
 .containerDetail {
@@ -62,7 +60,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(233, 233, 233);
   width: 700px;
   height: 400px;
   margin: 6%;
@@ -164,7 +162,7 @@
   font-weight: 500;
   padding-right: 10px;
   padding-bottom: 10px;
-  background-color: rgb(81, 81, 255);
+  background-color: rgb(237, 237, 239);
 }
 
 .pokemonNameDetail {
@@ -197,21 +195,21 @@
   padding-top: 60px;
 }
 
-.iconImage{
-    width: 20px;
-    height: auto;
-    margin-bottom: -5px;
+.iconImage {
+  width: 20px;
+  height: auto;
+  margin-bottom: -5px;
 }
 
-.imagenConRedes{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.imagenConRedes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.estudiante{
-    color: rgb(228, 228, 250);
+.estudiante {
+  color: rgb(228, 228, 250);
 }
 
 /*Links*/
