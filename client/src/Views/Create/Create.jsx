@@ -129,6 +129,7 @@ const Create = () => {
             <p>2- Haz click derecho sobre el mismo </p>
             <p>3- Selecciona "Copiar dirección de la imagen" </p>
             <p>4- Pega la dirección en el formulario </p>
+            <p>5- Sigue creando tu pokemon! </p>
           </div>
         </div>
       </div>
